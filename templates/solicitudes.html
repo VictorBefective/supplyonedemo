@@ -540,7 +540,7 @@
                                     <tbody>
                                         {% for o in ordenes%}
                                             <tr>
-                                                <td><a href="/proveedores/ver/{{o.provider.id}}">{{o.provider.company}}</a></td>
+                                                <td><a href="/proveedores/ver/{{o.provider.id}}/">{{o.provider.company}}</a></td>
                                                 <td><a href="#">{{o.to_user.get_full_name}}</a>
                                                 </td>
                                                 <td><a href="/orden/{{o.id}}/">{{o.productos}}</a></td>
