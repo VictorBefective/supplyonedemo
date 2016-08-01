@@ -1,0 +1,953 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es-MX">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SupplyOne</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Los estilos -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.js"></script>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/loader-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+    <link rel="stylesheet" href="{% static 'js/button/ladda/ladda.min.css' %}">
+
+
+
+
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    <!-- Iconos Favicon y touch  -->
+    <link rel="shortcut icon" href="{% static 'ico/favicon.png' %}">
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+      <div id="status">&nbsp;</div>
+    </div>
+    <!-- TOP NAVBAR -->
+    <nav role="navigation" class="navbar navbar-static-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" class="navbar-toggle" type="button">
+                    <span class="entypo-menu"></span>
+                </button>
+                <button class="navbar-toggle toggle-menu-mobile toggle-left" type="button">
+                    <span class="entypo-list-add"></span>
+                </button>
+
+
+
+
+                <div id="logo-mobile" class="visible-xs">
+                    <h1>SupplyOne
+                        <span></span>
+                    </h1>
+                </div>
+
+            </div>
+
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+
+                    <li class="dropdown">
+
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:20px;" data-toggle="tooltip" data-placement="bottom" title="Mensaje" style="font-size:20px;" class="icon-conversation"></i><div class="noft-red">23</div></a>
+
+
+                        <ul style="margin: 11px 0 0 9px;" role="menu" class="dropdown-menu dropdown-wrap">
+                            <li>
+                                <a href="#">
+                                    <img alt="" class="img-msg img-circle" src="http://api.randomuser.me/portraits/thumb/men/1.jpg">Rodrigo <b>Ahora</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <img alt="" class="img-msg img-circle" src="http://api.randomuser.me/portraits/thumb/women/1.jpg">Selenne <b>hace 3 min</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <img alt="" class="img-msg img-circle" src="http://api.randomuser.me/portraits/thumb/men/2.jpg">Alejandro <b>hace 2 horas</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <img alt="" class="img-msg img-circle" src="http://api.randomuser.me/portraits/thumb/men/3.jpg"><i>Rubén</i>  <b>hace 1 día</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <img alt="" class="img-msg img-circle" src="http://api.randomuser.me/portraits/thumb/men/4.jpg"><i>Adrian</i>  <b>hace 2 meses</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div>Ver todos</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:19px;" class="icon-warning tooltitle" data-placement="bottom" title="alertas"></i><div class="noft-green">5</div></a>
+                        <ul style="margin: 12px 0 0 0;" role="menu" class="dropdown-menu dropdown-wrap">
+                            <li>
+                                <a href="#">
+                                    <span style="background:#DF2135" class="noft-icon maki-bus"></span><i>Almacén</i>  <b>01B</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <span style="background:#AB6DB0" class="noft-icon maki-ferry"></span><i>Salida</i>  <b>9:00 AM</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <span style="background:#FFA200" class="noft-icon maki-aboveground-rail"></span><i>Retrasos</i>  <b>09 Min</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <span style="background:#86C440" class="noft-icon maki-airport"></span><i>En proceso</i>  <b>08:30 AM</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <span style="background:#0DB8DF" class="noft-icon maki-bicycle"></span><i>Rechazado</i>  <b>08:30 AM</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div>Ver todas</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i data-toggle="tooltip" data-placement="bottom" title="Ayuda" style="font-size:20px;" class="icon-help tooltitle"></i></a>
+                    </li>
+
+                </ul>
+                <div id="nt-title-container" class="navbar-left running-text visible-lg">
+                    <ul class="date-top">
+                        <li class="entypo-calendar" style="margin-right:5px"></li>
+                        <li id="Date"></li>
+
+
+                    </ul>
+
+                    <ul id="digital-clock" class="digital">
+                        <li class="entypo-clock" style="margin-right:5px"></li>
+                        <li class="hour"></li>
+                        <li>:</li>
+                        <li class="min"></li>
+                        <li>:</li>
+                        <li class="sec"></li>
+                        <li class="meridiem"></li>
+                    </ul>
+                    <ul id="nt-title">
+                        <li>&#160;&#160;Bienvenido (a)&#160;
+                            <b>{{user.get_name}}</b>&#160;; 
+                        </li>
+                        
+
+                    </ul> 
+                </div>
+
+                <ul style="margin-right:0;" class="nav navbar-nav navbar-right">
+                    <li>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <img alt="" class="admin-pic img-circle" src="{% static 'avatar/10.jpg' %}">Hola, {{user.get_name}} <b class="caret"></b>
+                        </a>
+                        <ul style="margin-top:14px;" role="menu" class="dropdown-setting dropdown-menu">
+                            <li>
+                                <a href="#">
+                                    <span class="entypo-user"></span>&#160;&#160;Perfil</a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="entypo-vcard"></span>&#160;&#160;Oonfiguración</a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="entypo-lifebuoy"></span>&#160;&#160;Ayuda</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="/logout/">
+                                    <span class="entypo-logout"></span>&#160;&#160;Salir</a>
+                            </li>
+                        </ul>
+                    </li>
+                   <!-- <li>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="icon-gear"></span>&#160;&#160;Tema</a>
+                        <ul role="menu" class="dropdown-setting dropdown-menu">
+
+                            <li class="theme-bg">
+                                <div id="button-bg"></div>
+                                <div id="button-bg2"></div>
+                                <div id="button-bg3"></div>
+                                <div id="button-bg5"></div>
+                                <div id="button-bg6"></div>
+                                <div id="button-bg7"></div>
+                                <div id="button-bg8"></div>
+                                <div id="button-bg9"></div>
+                                <div id="button-bg10"></div>
+                                <div id="button-bg11"></div>
+                                <div id="button-bg12"></div>
+                                <div id="button-bg13"></div>
+                            </li>
+                        </ul>
+                    </li>-->
+                    <li class="hidden-xs"> <!--menu sidebar de la derecha para agregar informacion-->
+                        <a class="toggle-left" href="#">
+                            <span style="font-size:20px;" class="entypo-list-add"></span>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- /FIN DEL TOP NAVBAR -->
+
+    <!-- MENU LATERAL -->
+    <div id="skin-select">
+        <div id="logo">
+            <img src="{% static 'img/SO_logo.png' %}" style="margin: 21px 0px 15px";>
+        </div>
+
+        <a id="toggle">
+            <span class="entypo-menu"></span>
+        </a>
+        <div class="dark">
+            <form action="#">
+                <span>
+                    <input type="text" name="search" value="" class="search rounded id_search" placeholder="Buscar sección..." autofocus />
+                </span>
+            </form>
+        </div>
+
+        <div class="search-hover">
+            <form id="demo-2">
+                <input type="search" placeholder="Buscar sección..." class="id_search">
+            </form>
+        </div>
+
+
+        <div class="search-hover">
+            <form id="demo-2">
+                <input type="search" placeholder="Buscar sección..." class="id_search">
+            </form>
+        </div>
+
+
+
+
+        <div class="skin-part">
+            <div id="tree-wrap">
+                <div class="side-bar">
+                    <ul class="topnav menu-left-nest">
+                      <li> <a href="#" style="border-left:0px solid!important;" class="title-menu-left"> <span clas="clas" s="widget-menu">Menu </span> <em data-toggle="tooltip" class="entypo-cog pull-right config-wrap"></em></a></li>
+                      <li>
+                            <a class="tooltip-tip ajax-load" href="/" title="Tablero"><em class="icon-document-edit"></em> <span>Tablero</span></a>
+                            <ul>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title="submenu 1"><i class="entypo-doc-text"></i><span>Submenu1</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title="submenu 2"><i class="entypo-newspaper"></i><span>Submenu 2</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                      <li> <a class="tooltip-tip ajax-load" href="/solicitudes/" title="Solicitudes"> <em class="icon-document"></em> <span>Solicitudes</span></a></li>
+                      <li> <a class="tooltip-tip ajax-load" href="/proveedores/" title="Proveedores"> <em class="icon-user-group"></em> <span>Proveedores</span></a></li>
+                      <li> <a class="tooltip-tip ajax-load" href="#" title="Cotizaciones"> <em class="fontawesome-money"></em> <span>Cotizaciones</span></a></li>
+                      <li> <a class="tooltip-tip ajax-load" href="/orden/" title="Ordenes de compra"> <em class="fontawesome-credit-card"></em> <span>Órdenes de compra</span></a></li>
+                    </ul>
+
+                    <ul class="topnav menu-left-nest"> <li> <a href="#" style="border-left:0px solid!important;" class="title-menu-left"> <span class="design-kit">Pre-Calificación </span> <em data-toggle="tooltip" class="entypo-cog pull-right config-wrap"></em> </a> </li>
+                      <li> <a class="tooltip-tip ajax-load" href="/proveedores/alta" title="Alta proveedores"> <em class="entypo-user-add"></em> <span>Alta proveedores</span></a> </li>
+                      <li>
+                            <a class="tooltip-tip ajax-load" href="#" title="Aprobadas"><em class="icon-thumbs-up"></em> <span>Aprobadas</span>
+                            <div class="noft-blue">289</div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="tooltip-tip ajax-load" href="#" title="Pendientes"><em class="icon-preview"></em> <span>Pendientes</span>
+                            <div class="noft-blue" style="display: inline-block; float: none;"> 3</div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="tooltip-tip" href="#" title="Rechazadas"><em class="icon-thumbs-down"></em> <span>Rechazadas</span></a>
+                          
+                        </li>
+
+                    
+
+                  </ul>
+
+                    <ul id="menu-showhide" class="topnav menu-left-nest">
+                      <li> <a href="#" style="border-left:0px solid!important;" class="title-menu-left"> <span class="component">Evaluaciones</span> <em data-toggle="tooltip" class="entypo-cog pull-right config-wrap"></em> </a> </li>
+                      <li>
+                            <a class="tooltip-tip" href="#" title="Desempeño"><em class="fontawesome-cogs"></em> <span>Desempeño</span></a>
+                            <ul>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title="KPIs Proveedores"><i class="icon-attachment"></i><span>KPIs Proveedores</span></a>
+                                </li>
+                                <li>
+                                	<a class="tooltip-tip2 ajax-load" href="#" title="Riesgo de Proveedores"><i class="icon-view-list-large"></i><span>Riesgo de Proveedores</span></a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="tooltip-tip" href="#" title="Documental">
+                                <i class="icon-document"></i>
+                                <span>Documental</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title="Cuestionario"><i class="icon-document-edit"></i><span>Cuestionario</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title=“Legales”><i class="fontawesome-bell-alt"></i><span>Docs. Legales</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title=“Fiscales”><i class="icon-code"></i><span>Docs. Fiscales</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title=“Contables”><i class="icon-upload"></i><span>Docs. Contables</span></a>
+                                </li>
+			       <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title=“Comerciales”><i class="icon-upload"></i><span>Ref. Comerciales</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title=“Bancarias”><i class="icon-upload"></i><span>Ref. Bancarias</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="tooltip-tip" href="#" title="En sitio">
+                                <i class="icon-location"></i>
+                                <span>En sitio</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title="Reporte"><i class="fontawesome-signal"></i><span>Reporte</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title="Acciones de mejora"><i class="fontawesome-check"></i><span>Mejoras</span></a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a class="tooltip-tip ajax-load" href="#" title="Reportes">
+                                <i class="fontawesome-tasks"></i>
+                                <span>Reportes</span>
+
+                            </a>
+                        </li>
+                  </ul>
+
+
+                    
+              </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIN DEL MENU LATERAL -->
+
+
+
+    <!--  PAPER WRAP -->
+    <div class="wrap-fluid">
+        <div class="container-fluid paper-wrap bevel tlbr">
+
+
+
+
+
+            <!-- CONTENIDO -->
+            <!--TITLE -->
+            <div class="row">
+                <div id="paper-top">
+                    <div class="col-sm-3">
+                    </div>
+
+                    <div class="col-sm-7">
+                        <div class="devider-vertical visible-lg"></div>
+                        <div class="tittle-middle-header">
+
+                          <div class="alert">
+
+
+                        </div>
+
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="devider-vertical visible-lg"></div>
+                        <div class="btn-group btn-wigdet pull-right visible-lg">
+                       <!--
+                            <div class="btn">
+                                Widget</div>
+                            <button data-toggle="dropdown" class="btn dropdown-toggle" type="button">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul role="menu" class="dropdown-menu">
+                                <li>
+                                    <a href="#">
+                                        <span class="entypo-plus-circled margin-iconic"></span>Add New</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="entypo-heart margin-iconic"></span>Favorite</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="entypo-cog margin-iconic"></span>Setting</a>
+                                </li>
+                            </ul>
+                        </div>
+
+-->
+                    </div>
+                </div>
+            </div>
+            <!--/ TITLE -->
+
+            <!-- BREADCRUMB -->
+            <ul id="breadcrumb">
+                <li>
+                    <span class="entypo-home"></span>
+                </li>
+                <li><i class="fa fa-lg fa-angle-right"></i>
+                </li>
+                <li><a href="#" title="Sample page 1">Tablero</a>
+                </li>
+                <li><i class="fa fa-lg fa-angle-right"></i>
+                
+                <li class="pull-right">
+                    <div class="input-group input-widget">
+
+                        <input style="border-radius:15px" type="text" placeholder="Buscar..." class="form-control">
+                    </div>
+                </li>
+            </ul>
+
+            <!--FIN DEL BREADCRUMB -->
+
+            <div class="content-wrap">
+                <div class="row">
+
+
+                    <div class="col-sm-12">
+                        <!-- BLANK PAGE-->
+
+                        
+                               <!--  primeros datos -->
+            <div class="content-wrap">
+                <div class="row">
+                    <div class="col-sm-3"> <!--  cajita -->
+                        <div class=" member" id="memberClose">
+                            <div class="headline ">
+                                <h3>
+                                    <span>
+                                        <i class="fa fa-truck"></i>
+                                        &#160;&#160;ENTREGAS
+                                    </span>
+                                </h3>
+                                <div class="titleClose">
+                                    <a href="#memberClose" class="gone">
+                                        <span class="entypo-cancel"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="value">
+                                <span><i class="maki-warehouse"></i>
+                                </span>21<b>BIEN</b>
+
+                            </div>
+                            <div class="progress-tinny">
+                                <div style="width: 50%" class="bar"></div>
+                            </div>
+                            <div class="profit-line">
+                                <span class="entypo-down-circled"></span>&#160;En el último mes</div>
+                        </div>
+                    </div> <!--  / cajita -->
+                    <div class="col-sm-3"> <!--  / cajita -->
+                        <div class=" pprogress" id="memberClose">
+                            <div class="headline ">
+                                <h3>
+                                    <span>
+                                        <i class="fa fa-truck"></i>
+                                        &#160;&#160;EN PROGRESO
+                                    </span>
+                                </h3>
+                                <div class="titleClose">
+                                    <a href="#memberClose" class="gone">
+                                        <span class="entypo-cancel"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="value">
+                                <span><i class="fontawesome-retweet"></i>
+                                </span>7<b>A TIEMPO</b>
+
+                            </div>
+                            <div class="progress-tinny">
+                                <div style="width: 50%" class="bar"></div>
+                            </div>
+                            <div class="profit-line">
+                                <span class="entypo-down-circled"></span>&#160;En el último mes</div>
+                        </div>
+                    </div> <!--  / cajita -->
+                    <div class="col-sm-3"> <!--  cajita -->
+                        <div class="order" id="memberClose">
+                            <div class="headline ">
+                                <h3>
+                                    <span>
+                                        <i class="fa fa-truck"></i>
+                                        &#160;&#160;COTIZACIONES
+                                    </span>
+                                </h3>
+                                <div class="titleClose">
+                                    <a href="#memberClose" class="gone">
+                                        <span class="entypo-cancel"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="value">
+                                <span><i class="fontawesome-money"></i>
+                                </span>03<b>en espera</b>
+
+                            </div>
+                            <div class="progress-tinny">
+                                <div style="width: 50%" class="bar"></div>
+                            </div>
+                            <div class="profit-line">
+                                <span class="entypo-down-circled"></span>&#160;En el último mes</div>
+                        </div>
+                    </div> <!--  / cajita -->
+                    <div class="col-sm-3"> <!-- cajita -->
+                        <div class="profit" id="memberClose">
+                            <div class="headline ">
+                                <h3>
+                                    <span>
+                                        <i class="fa fa-truck"></i>
+                                        &#160;&#160;RETRASOS
+                                    </span>
+                                </h3>
+                                <div class="titleClose">
+                                    <a href="#memberClose" class="gone">
+                                        <span class="entypo-cancel"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="value">
+                                <span><i class="entypo-back-in-time"></i>
+                                </span>03<b>retrasos</b>
+
+                            </div>
+                            <div class="progress-tinny">
+                                <div style="width: 50%" class="bar"></div>
+                            </div>
+                            <div class="profit-line">
+                                <span class="entypo-down-circled"></span>&#160;En el último mes</div>
+                        </div>
+                    </div> <!--  / cajita -->
+                </div>
+            </div>
+            <!-- 2 columnas -->
+            <div class="content-wrap">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div id="siteClose" class="nest">
+                            <div class="title-alt">
+                                <h6>
+                                    <span class="fontawesome-truck"></span>&nbsp;Top 3 proveedores por calificación</h6>
+                                <div class="titleClose">
+                                    <a class="gone" href="#siteClose">
+                                        <span class="entypo-cancel"></span>
+                                    </a>
+                                </div>
+                                <div class="titleToggle">
+                                    <a class="nav-toggle-alt" href="#site">
+                                        <span class="entypo-up-open"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="site" class="body-nest" style="min-height:296px;">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="armada-devider">
+                                                    <div class="armada">
+                                                        <span style="background:#65C3DF">
+                                                            <span class="maki-bus"></span>&nbsp;&nbsp;Papelería</span>
+                                                        <p>
+                                                            <span class="entypo-gauge"></span>&nbsp;<i></i>
+                                                        </p>
+                                                    </div>
+                                                </td>
+                                                <td class="driver-devider">
+                                                    <img class="armada-pic img-circle" alt="" src="http://api.randomuser.me/portraits/thumb/men/14.jpg">
+                                                    <h3>Óscar García</h3>
+                                                    <br>
+                                                    <p>Companic Papelera</p>
+                                                </td>
+                                                <td class="progress-devider">
+
+
+                                                    <section id="basic">
+                                                        <article>
+                                                        <div class="progress">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
+                                        <span class="sr-only">20% Complete</span>
+                                    </div>
+                                </div>
+
+                                                            <!--<div class="number-pb">
+                                                                <div class="number-pb-shown"></div>
+                                                                <div class="number-pb-num">0</div>
+                                                            </div>-->
+                                                        </article>
+                                                    </section>
+                                                    <span class="label pull-left">Proveedor desde 2010</span>
+                                                    
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="armada-devider">
+                                                    <div class="armada">
+                                                        <span style="background:#45B6B0">
+                                                            <span class="fontawesome-plane"></span>&nbsp;&nbsp;HelpDesk</span>
+                                                        <p>
+                                                            <span class="entypo-gauge"></span>&nbsp;<i></i>
+                                                        </p>
+                                                    </div>
+                                                </td>
+                                                <td class="driver-devider">
+                                                    <img class="armada-pic img-circle" alt="" src="http://api.randomuser.me/portraits/thumb/men/38.jpg">
+                                                    <h3>Adrían Rivas</h3>
+                                                    <br>
+                                                    <p>IT Manager</p>
+                                                </td>
+                                                <td class="progress-devider">
+
+
+                                                    <section id="percentage">
+                                                        <article>
+                                                          <div class="progress">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 85%">
+                                        <span class="sr-only">20% Complete</span>
+                                    </div>
+                                </div>
+                                                            <!--<div class="number-pb">
+                                                                <div class="number-pb-shown dream"></div>
+                                                                <div class="number-pb-num">0%</div>
+                                                            </div>-->
+                                                        </article>
+                                                    </section>
+
+
+                                                    <span class="label pull-left">Proveedor desde 2014</span>
+                                                    
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="armada-devider">
+                                                    <div class="armada">
+                                                        <span style="background:#FF6B6B">
+                                                            <span class="maki-aboveground-rail"></span>&nbsp;&nbsp;Paqueteria</span>
+                                                        <p>
+                                                            <span class="entypo-gauge"></span>&nbsp;<i></i>
+                                                        </p>
+                                                    </div>
+                                                </td>
+                                                <td class="driver-devider">
+                                                    <img class="armada-pic img-circle" alt="" src="http://api.randomuser.me/portraits/thumb/men/39.jpg">
+                                                    <h3>José Peña</h3>
+                                                    <br>
+                                                    <p>Empaques Mexicanos</p>
+                                                </td>
+                                                <td class="progress-devider">
+
+                                                    <section id="step">
+                                                        <article>
+                                                          <div class="progress">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 83 %">
+                                        <span class="sr-only">20% Complete</span>
+                                    </div>
+                                </div>
+
+                                                            <!--<div class="number-pb">
+                                                                <div class="number-pb-shown sun"></div>
+                                                                <div class="number-pb-num">0/0</div>
+                                                            </div>-->
+                                                        </article>
+                                                    </section>
+
+                                                    <span class="label pull-left">Proveedor desde 2012</span>
+                                                    
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div id="RealTimeClose" class="nest">
+                            <div class="title-alt">
+                                <h6>
+                                    <span class="fontawesome-resize-horizontal"></span>&nbsp;Últimas cotizaciones</h6>
+                                <div class="titleClose">
+                                    <a class="gone" href="#RealTimeClose">
+                                        <span class="entypo-cancel"></span>
+                                    </a>
+                                </div>
+                                <div class="titleToggle">
+                                    <a class="nav-toggle-alt" href="#RealTime">
+                                        <span class="entypo-up-open"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="RealTime" style="min-height:296px;padding-top:20px;" class="body-nest">
+                                <ul class="direction">
+                                    <li>
+                                        <span class="direction-icon fontawesome-building" style="background:#FF6B6B"></span>
+                                        <h3>
+                                            <span>Cancelería</span>
+                                        </h3>
+                                        <p>Construcción&nbsp;&nbsp;<i class="fa fa-arrow-circle-up"></i>
+                                        </p>
+                                        <p><i>Vence en </i>:&nbsp;<i class="fa fa-clock-o"></i>&nbsp;&nbsp;20 Min</p>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <span class="direction-icon fontawesome-bullhorn" style="background:#65C3DF"></span>
+                                        <h3>
+                                            <span>Banquetería</span>
+                                        </h3>
+                                        <p>Mercadotecnia&nbsp;&nbsp;<i class="fa fa-reply"></i>
+                                        </p>
+                                        <p><i>Vence en </i>:&nbsp;<i class="fa fa-clock-o"></i>&nbsp;&nbsp;13 días</p>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <span class="direction-icon fontawesome-user" style="background:#45B6B0"></span>
+                                        <h3>
+                                            <span>Papelería</span>
+                                        </h3>
+                                        <p>Recursos Humanos &nbsp;&nbsp;<i class="fa fa-share"></i>
+                                        </p>
+                                        <p><i>Vence en </i>:&nbsp;<i class="fa fa-clock-o"></i>&nbsp;&nbsp;7 días</p>
+                                    </li>
+                                    <li class="divider"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <!-- Fin de las 2 columnas -->
+          
+            
+            <!-- GRAFICA 
+            <div class="content-wrap">
+                <div class="row">
+
+
+                    <div class="col-sm-12">
+
+                        <div class="nest" id="lineClose">
+                            <div class="title-alt">
+                                <h6>
+                                    Comportamiento 2016</h6>
+                                <div class="titleClose">
+                                    <a class="gone" href="#lineClose">
+                                        <span class="entypo-cancel"></span>
+                                    </a>
+                                </div>
+                                <div class="titleToggle">
+                                    <a class="nav-toggle-alt" href="#line">
+                                        <span class="entypo-up-open"></span>
+                                    </a>
+                                </div>
+
+                            </div>
+
+                            <div class="body-nest" id="line">
+
+                                <canvas id="canvas4" class="myChart" height="416" width="900"></canvas>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- FIN DE GRAFICA -->
+            <!--  / DEVICE MANAGER -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FIN DE PAGINA -->
+
+
+                </div>
+
+
+
+                <!-- /FIN DEL CONTENIDO -->
+
+
+
+                <!-- FOOTER -->
+                <div class="footer-space"></div>
+                <div id="footer">
+                    <div class="devider-footer-left"></div>
+                    <div class="time">
+                        <p id="spanDate"></p>
+                        <p id="clock"></p>
+                    </div>
+                    <div class="copyright">Desarrollado por
+                        <a href="http://itpeopleone.com">SupplyOne</a> Todos los derechos reservados</div>
+                    <div class="devider-footer"></div>
+
+                </div>
+                <!-- / FIN DEL FOOTER -->
+
+
+            </div>
+        </div>
+        <!--  FIN DE PAPER WRAP -->
+
+        <!-- CONTENIDO DEL SLIDER DERECHO -->
+        <div class="sb-slidebar sb-right">
+            <div class="right-wrapper">
+                <div class="row">
+                    <h3>
+                        <span><i class="entypo-gauge"></i>&nbsp;&nbsp;DATOS DUROS</span>
+                    </h3>
+                    <div class="col-sm-12">
+
+                        <div class="widget-knob">
+                            <span class="chart" style="position:relative" data-percent="17">
+                                <span class="percent"></span>
+                            </span>
+                        </div>
+                        <div class="widget-def">
+                            <b>Proveedores rechazados</b>
+                            <br>
+                            <i>17%</i>
+                        </div>
+
+                        <div class="widget-knob">
+                            <span class="chart" style="position:relative" data-percent="75">
+                                <span class="percent"></span>
+                            </span>
+                        </div>
+                        <div class="widget-def">
+                            <b>Proveedores aprobados</b>
+                            <br>
+                            <i>75%</i>
+                        </div>
+
+
+                        <div class="widget-knob">
+                            <span class="overall" style="position:relative" data-percent="62">
+                                <span class="percent3"></span>
+                            </span>
+                        </div>
+                        <div class="widget-def">
+                            <b>Bien calificados</b>
+                            <br>
+                            <i>62% del total</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FIN DEL CONTENIDO DEL SLIDER DERECHO-->
+
+
+        <!-- MAIN EFFECT -->
+        <script type="text/javascript" src="{% static 'js/preloader.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/load.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+        
+         <!--  PLUGIN -->
+    <script type="text/javascript" src="{% static 'js/chart/chart.js' %}"></script>
+    <!--<script type="text/javascript" src="{% static 'js/chart/barChart.js' %}"></script>-->
+    <script type="text/javascript" src="{% static 'js/chart/radarChart.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/chart/polarChart.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/chart/lineChart.js' %}"></script>
+
+<!--
+    <script type="text/javascript" src="{% static 'js/chart/jquery.flot2.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/chart/jquery.flot.resize.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/chart/realTime.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/chart/chart-float-stacking.js' %}"></script>
+-->
+
+<!-- medidor de barras en top 3 porveedores -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.js"></script>
+    <script src="{% static 'js/progress-bar/src/jquery.velocity.min.js' %}"></script>
+    <script src="{% static 'js/progress-bar/number-pb.js' %}"></script>
+    <script src="{% static 'js/progress-bar/progress-app.js' %}"></script>
+
+
+<!-- fin de medidor de barras en top 3 proveedores -->
+
+
+</body>
+
+</html>

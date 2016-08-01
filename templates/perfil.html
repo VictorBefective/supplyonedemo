@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SupplyOne</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Los estilos -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.js"></script>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/loader-style.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/profile.css">
+
+    <link rel="stylesheet" href="/static/js/button/ladda/ladda.min.css">
+
+
+
+
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    <!-- Iconos Favicon y touch  -->
+    <link rel="shortcut icon" href="/static/ico/favicon.png">
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+      <div id="status">&nbsp;</div>
+    </div>
+    <!-- TOP NAVBAR -->
+    <nav role="navigation" class="navbar navbar-static-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" class="navbar-toggle" type="button">
+                    <span class="entypo-menu"></span>
+                </button>
+                <button class="navbar-toggle toggle-menu-mobile toggle-left" type="button">
+                    <span class="entypo-list-add"></span>
+                </button>
+
+
+
+
+                <div id="logo-mobile" class="visible-xs">
+                    <h1>SupplyOne
+                        <span></span>
+                    </h1>
+                </div>
+
+            </div>
+
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+
+                    <li class="dropdown">
+
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:20px;" data-toggle="tooltip" data-placement="bottom" title="Mensaje" style="font-size:20px;" class="icon-conversation"></i><div class="noft-red">23</div></a>
+
+
+                        <ul style="margin: 11px 0 0 9px;" role="menu" class="dropdown-menu dropdown-wrap">
+                            <li>
+                                <a href="#">
+                                    <img alt="" class="img-msg img-circle" src="http://api.randomuser.me/portraits/thumb/men/1.jpg">Rodrigo <b>Ahora</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <img alt="" class="img-msg img-circle" src="http://api.randomuser.me/portraits/thumb/women/1.jpg">Selenne <b>hace 3 min</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <img alt="" class="img-msg img-circle" src="http://api.randomuser.me/portraits/thumb/men/2.jpg">Alejandro <b>hace 2 horas</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <img alt="" class="img-msg img-circle" src="http://api.randomuser.me/portraits/thumb/men/3.jpg"><i>Rubén</i>  <b>hace 1 día</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <img alt="" class="img-msg img-circle" src="http://api.randomuser.me/portraits/thumb/men/4.jpg"><i>Adrian</i>  <b>hace 2 meses</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div>Ver todos</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:19px;" class="icon-warning tooltitle" data-placement="bottom" title="alertas"></i><div class="noft-green">5</div></a>
+                        <ul style="margin: 12px 0 0 0;" role="menu" class="dropdown-menu dropdown-wrap">
+                            <li>
+                                <a href="#">
+                                    <span style="background:#DF2135" class="noft-icon maki-bus"></span><i>Almacén</i>  <b>01B</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <span style="background:#AB6DB0" class="noft-icon maki-ferry"></span><i>Salida</i>  <b>9:00 AM</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <span style="background:#FFA200" class="noft-icon maki-aboveground-rail"></span><i>Retrasos</i>  <b>09 Min</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <span style="background:#86C440" class="noft-icon maki-airport"></span><i>En proceso</i>  <b>08:30 AM</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <span style="background:#0DB8DF" class="noft-icon maki-bicycle"></span><i>Rechazado</i>  <b>08:30 AM</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div>Ver todas</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i data-toggle="tooltip" data-placement="bottom" title="Ayuda" style="font-size:20px;" class="icon-help tooltitle"></i></a>
+                    </li>
+
+                </ul>
+                <div id="nt-title-container" class="navbar-left running-text visible-lg">
+                    <ul class="date-top">
+                        <li class="entypo-calendar" style="margin-right:5px"></li>
+                        <li id="Date"></li>
+
+
+                    </ul>
+
+                    <ul id="digital-clock" class="digital">
+                        <li class="entypo-clock" style="margin-right:5px"></li>
+                        <li class="hour"></li>
+                        <li>:</li>
+                        <li class="min"></li>
+                        <li>:</li>
+                        <li class="sec"></li>
+                        <li class="meridiem"></li>
+                    </ul>
+                    <ul id="nt-title">
+                        <li>&#160;&#160;Bienvenido (a)&#160;
+                            <b>{{user.get_name}}</b>&#160;; 
+                        </li>
+                        
+
+                    </ul> 
+                </div>
+
+                <ul style="margin-right:0;" class="nav navbar-nav navbar-right">
+                    <li>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <img alt="" class="admin-pic img-circle" src="/static/avatar/10.jpg">Hola, {{user.get_name}} <b class="caret"></b>
+                        </a>
+                        <ul style="margin-top:14px;" role="menu" class="dropdown-setting dropdown-menu">
+                            <li>
+                                <a href="#">
+                                    <span class="entypo-user"></span>&#160;&#160;Perfil</a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="entypo-vcard"></span>&#160;&#160;Oonfiguración</a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="entypo-lifebuoy"></span>&#160;&#160;Ayuda</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="/logout/">
+                                    <span class="entypo-logout"></span>&#160;&#160;Salir</a>
+                            </li>
+                        </ul>
+                    </li>
+                   <!-- <li>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="icon-gear"></span>&#160;&#160;Tema</a>
+                        <ul role="menu" class="dropdown-setting dropdown-menu">
+
+                            <li class="theme-bg">
+                                <div id="button-bg"></div>
+                                <div id="button-bg2"></div>
+                                <div id="button-bg3"></div>
+                                <div id="button-bg5"></div>
+                                <div id="button-bg6"></div>
+                                <div id="button-bg7"></div>
+                                <div id="button-bg8"></div>
+                                <div id="button-bg9"></div>
+                                <div id="button-bg10"></div>
+                                <div id="button-bg11"></div>
+                                <div id="button-bg12"></div>
+                                <div id="button-bg13"></div>
+                            </li>
+                        </ul>
+                    </li>-->
+                    <li class="hidden-xs"> <!--menu sidebar de la derecha para agregar informacion-->
+                        <a class="toggle-left" href="#">
+                            <span style="font-size:20px;" class="entypo-list-add"></span>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- /FIN DEL TOP NAVBAR -->
+
+    <!-- MENU LATERAL -->
+    <div id="skin-select">
+        <div id="logo">
+            <img src="/static/img/SO_logo.png" style="margin: 21px 0px 15px";>
+        </div>
+
+        <a id="toggle">
+            <span class="entypo-menu"></span>
+        </a>
+        <div class="dark">
+            <form action="#">
+                <span>
+                    <input type="text" name="search" value="" class="search rounded id_search" placeholder="Buscar sección..." autofocus />
+                </span>
+            </form>
+        </div>
+
+        <div class="search-hover">
+            <form id="demo-2">
+                <input type="search" placeholder="Buscar sección..." class="id_search">
+            </form>
+        </div>
+
+
+        <div class="search-hover">
+            <form id="demo-2">
+                <input type="search" placeholder="Buscar sección..." class="id_search">
+            </form>
+        </div>
+
+
+
+
+        <div class="skin-part">
+            <div id="tree-wrap">
+                <div class="side-bar">
+                    <ul class="topnav menu-left-nest">
+                      <li> <a href="#" style="border-left:0px solid!important;" class="title-menu-left"> <span clas="clas" s="widget-menu">Menu </span> <em data-toggle="tooltip" class="entypo-cog pull-right config-wrap"></em></a></li>
+                      <li>
+                            <a class="tooltip-tip ajax-load" href="/" title="Tablero"><em class="icon-document-edit"></em> <span>Tablero</span></a>
+                            <ul>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title="submenu 1"><i class="entypo-doc-text"></i><span>Submenu1</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title="submenu 2"><i class="entypo-newspaper"></i><span>Submenu 2</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                      <li> <a class="tooltip-tip ajax-load" href="/solicitudes/" title="Solicitudes"> <em class="icon-document"></em> <span>Solicitudes</span></a></li>
+                      <li> <a class="tooltip-tip ajax-load" href="/proveedores/" title="Proveedores"> <em class="icon-user-group"></em> <span>Proveedores</span></a></li>
+                      <li> <a class="tooltip-tip ajax-load" href="#" title="Cotizaciones"> <em class="fontawesome-money"></em> <span>Cotizaciones</span></a></li>
+                      <li> <a class="tooltip-tip ajax-load" href="/solicitudes/" title="Ordenes de compra"> <em class="fontawesome-credit-card"></em> <span>Órdenes de compra</span></a></li>
+                    </ul>
+
+                    <ul class="topnav menu-left-nest"> <li> <a href="#" style="border-left:0px solid!important;" class="title-menu-left"> <span class="design-kit">Pre-Calificación </span> <em data-toggle="tooltip" class="entypo-cog pull-right config-wrap"></em> </a> </li>
+                      <li> <a class="tooltip-tip ajax-load" href="/proveedores/alta/" title="Alta proveedores"> <em class="entypo-user-add"></em> <span>Alta proveedores</span></a> </li>
+                      <li>
+                            <a class="tooltip-tip ajax-load" href="#" title="Aprobadas"><em class="icon-thumbs-up"></em> <span>Aprobadas</span>
+                            <div class="noft-blue">289</div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="tooltip-tip ajax-load" href="#" title="Pendientes"><em class="icon-preview"></em> <span>Pendientes</span>
+                            <div class="noft-blue" style="display: inline-block; float: none;"> 3</div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="tooltip-tip" href="#" title="Rechazadas"><em class="icon-thumbs-down"></em> <span>Rechazadas</span></a>
+                          
+                        </li>
+
+                    
+
+                  </ul>
+
+                    <ul id="menu-showhide" class="topnav menu-left-nest">
+                      <li> <a href="#" style="border-left:0px solid!important;" class="title-menu-left"> <span class="component">Evaluaciones</span> <em data-toggle="tooltip" class="entypo-cog pull-right config-wrap"></em> </a> </li>
+                      <li>
+                            <a class="tooltip-tip" href="#" title="Desempeño"><em class="fontawesome-cogs"></em> <span>Desempeño</span></a>
+                            <ul>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title="KPIs Proveedores"><i class="icon-attachment"></i><span>KPIs Proveedores</span></a>
+                                </li>
+                                <li>
+                                	<a class="tooltip-tip2 ajax-load" href="#" title="Riesgo de Proveedores"><i class="icon-view-list-large"></i><span>Riesgo de Proveedores</span></a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="tooltip-tip" href="#" title="Documental">
+                                <i class="icon-document"></i>
+                                <span>Documental</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title="Cuestionario"><i class="icon-document-edit"></i><span>Cuestionario</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title=“Legales”><i class="fontawesome-bell-alt"></i><span>Docs. Legales</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title=“Fiscales”><i class="icon-code"></i><span>Docs. Fiscales</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title=“Contables”><i class="icon-upload"></i><span>Docs. Contables</span></a>
+                                </li>
+			       <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title=“Comerciales”><i class="icon-upload"></i><span>Ref. Comerciales</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title=“Bancarias”><i class="icon-upload"></i><span>Ref. Bancarias</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="tooltip-tip" href="#" title="En sitio">
+                                <i class="icon-location"></i>
+                                <span>En sitio</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title="Reporte"><i class="fontawesome-signal"></i><span>Reporte</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title="Acciones de mejora"><i class="fontawesome-check"></i><span>Mejoras</span></a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a class="tooltip-tip ajax-load" href="#" title="Reportes">
+                                <i class="fontawesome-tasks"></i>
+                                <span>Reportes</span>
+
+                            </a>
+                        </li>
+                  </ul>
+
+
+                    
+              </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIN DEL MENU LATERAL -->
+
+
+
+    <!--  PAPER WRAP -->
+    <div class="wrap-fluid">
+        <div class="container-fluid paper-wrap bevel tlbr">
+
+
+
+
+
+            <!-- CONTENIDO -->
+            <!--TITLE -->
+            <div class="row">
+                <div id="paper-top">
+                    <div class="col-sm-3">
+                    </div>
+
+                    <div class="col-sm-7">
+                        <div class="devider-vertical visible-lg"></div>
+                        <div class="tittle-middle-header">
+
+                          <div class="alert">
+
+
+                        </div>
+
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="devider-vertical visible-lg"></div>
+                        <div class="btn-group btn-wigdet pull-right visible-lg">
+                       <!--
+                            <div class="btn">
+                                Widget</div>
+                            <button data-toggle="dropdown" class="btn dropdown-toggle" type="button">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul role="menu" class="dropdown-menu">
+                                <li>
+                                    <a href="#">
+                                        <span class="entypo-plus-circled margin-iconic"></span>Add New</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="entypo-heart margin-iconic"></span>Favorite</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="entypo-cog margin-iconic"></span>Setting</a>
+                                </li>
+                            </ul>
+                        </div>
+
+-->
+                    </div>
+                </div>
+            </div>
+            <!--/ TITLE -->
+
+            <!-- BREADCRUMB -->
+            <ul id="breadcrumb">
+                <li>
+                    <span class="entypo-home"></span>
+                </li>
+                <li><i class="fa fa-lg fa-angle-right"></i>
+                </li>
+                <li><a href="#" title="Sample page 1">Perfiles de Proveedor</a>
+                </li>
+                <li><i class="fa fa-lg fa-angle-right"></i>
+                
+                <li class="pull-right">
+                    <div class="input-group input-widget">
+
+                        <input style="border-radius:15px" type="text" placeholder="Buscar..." class="form-control">
+                    </div>
+                </li>
+            </ul>
+
+            <!--FIN DEL BREADCRUMB -->
+
+            <div class="content-wrap">
+                <div class="row">
+
+
+                    <div class="col-sm-12">
+                        <!-- BLANK PAGE-->
+                  
+			<div class="content-wrap"> 
+                       <!-- PROFILE -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="well profile">
+                            <div class="col-sm-12">
+                                <div class="col-xs-12 col-sm-4 text-center">
+                                            {% if success %}
+                                            <div class="alert alert-success alert-dismissable">
+                                                <a class="panel-close close" data-dismiss="alert">×</a> 
+                                                <i class="fa fa-coffee"></i>
+                                                Datos actualizados correctamente!
+                                            </div>
+                                            {% endif %}
+
+                                    <ul class="list-group">
+                                        <li class="list-group-item text-left">
+                                            <span class="entypo-user"></span>&nbsp;&nbsp;Perfil</li>
+                                        <li class="list-group-item text-center">
+                                            <img src="{{provider.logo.url}}" alt="" class="img-circle img-responsive img-profile">
+
+                                        </li>
+                                        <li class="list-group-item text-center">
+                                            <span class="pull-left">
+                                                <strong>Calificación</strong>
+                                            </span>
+
+
+                                            <div class="ratings">
+                                                {% for c in provider.get_calificacion %}
+                                                    <a href="#">
+                                                        <span class="fa fa-star"></span>
+                                                    </a>
+                                                {% endfor %}
+
+                                            </div>
+
+
+                                        </li>
+                                        <li class="list-group-item text-center">
+                                            <span class="pull-left">
+                                                <strong>Riesgo</strong>
+                                            </span>
+
+
+                                            <div class="ratings">
+                                                {% for r in provider.get_riesgo %}
+                                                    <a href="#">
+                                                        <span class="fa fa-star"></span>
+                                                    </a>
+                                                {% endfor %}
+                                            </div>
+
+
+                                        </li>
+
+                                        <li class="list-group-item text-right">
+                                            <span class="pull-left">
+                                                <strong>Desde</strong>
+                                            </span>{{provider.created_at}}</li>
+                                        <li class="list-group-item text-right">
+                                            <span class="pull-left">
+                                                <strong>Última actualización</strong>
+                                            </span>{{provider.updated_at}}</li>
+                                        <li class="list-group-item text-right">
+                                            <span class="pull-left">
+                                                <strong>Activado</strong>
+                                            </span>{{provider.get_activado}}</li>
+
+                                    </ul>
+
+                                </div>
+                                <div class="col-xs-12 col-sm-8 profile-name">
+                                    <h2>{{provider.get_name}}
+                                        <span class="pull-right social-profile">                                        </span>
+                                    </h2>
+                                    <hr>
+
+                                    <dl class="dl-horizontal-profile">
+
+                                        <dt>Nombre</dt>
+                                        <dd>{{provider.get_name}}</dd>
+
+                                        <dt>Email</dt>
+                                        <dd>{{provider.emails}}</dd>
+
+
+                                        <dt>Puesto</dt>
+                                        <dd>{{provider.puesto}}</dd>
+
+                                        <dt>Teléfono</dt>
+                                        <dd>{{provider.phone}}</dd>
+
+                                        <dt>Miembro desde</dt>
+                                        <dd>{{provider.created_at}}</dd>
+
+
+
+                                        <dt>Observaciones</dt>
+                                        <dd>{{provider.observaciones}}</dd>
+
+                                        <dt>Productos / Servicios</dt>
+                                        <dd>
+                                            {% for s in provider.get_servicios %}
+                                                <span class="tags">{{s}}</span>
+                                            {% endfor %}
+                                        </dd>
+                                        <!-- datos fiscales -->
+                                        <dt>RFC</dt>
+                                        <dd>{{provider.rfc}}</dd>
+                                        <dt>Calle</dt>
+                                        <dd>{{provider.street}}</dd>
+                                        <dt>No. Exterior</dt>
+                                        <dd>{{provider.exterior}}</dd>
+                                        <dt>No. Interior</dt>
+                                        <dd>{{provider.interior}}</dd>
+                                        <dt>Colonia</dt>
+                                        <dd>{{provider.colonia}}</dd>
+                                        <dt>Municipio</dt>
+                                        <dd>{{provider.municipio}}</dd>
+                                        <dt>Estado</dt>
+                                        <dd>{{provider.estado}}</dd>
+                                        <!-- fin de datos fiscales -->
+
+                                    </dl>
+
+
+                                    <hr>
+
+
+
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12 divider text-center">
+                                <div class="col-xs-12 col-sm-4 emphasis">
+                                  <h2> <strong>235</strong></h2>
+                                  <p>
+                                        <small>Tareas solicitadas</small>
+                                    </p>
+                                    <!--<button class="btn btn-success btn-block">
+                                        <span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Follow</button>-->
+                              </div>
+                                <div class="col-xs-12 col-sm-4 emphasis">
+                                    <h2>
+                                        <strong>215</strong>
+                                    </h2>
+                                    <p>
+                                        <small>Solicitudes completadas</small>
+                                    </p>
+                                   <!-- <button class="btn btn-info btn-block">
+                                        <span class="fa fa-user"></span>&nbsp;&nbsp;View Profile</button> -->
+                                </div>
+                                <div class="col-sm-4 emphasis">
+                                    <h2>
+                                        <strong>90%</strong>
+                                    </h2>
+                                    <p>
+                                        <small>Porcentaje de Satisfacción</small>
+                                    </p>
+                                   <!-- <button class="btn btn-default btn-block">
+                                        <span class="fa fa-user"></span>&nbsp;&nbsp;Likes</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="row">
+
+
+                        <div class="col-sm-12">
+                            <!-- BLANK PAGE-->
+
+                            <div style="margin:-20px 15px;" class="nest" id="Blank_PageClose">
+                                <div class="title-alt">
+                                    <h6>
+                                        Editar Perfil</h6>
+                                    <div class="titleClose">
+                                        <a class="gone" href="#Blank_PageClose">
+                                            <span class="entypo-cancel"></span>
+                                        </a>
+                                    </div>
+                                    <div class="titleToggle">
+                                        <a class="nav-toggle-alt" href="#Blank_Page_Content">
+                                            <span class="entypo-up-open"></span>
+                                        </a>
+                                    </div>
+
+                                </div>
+
+                                <div class="body-nest" id="Blank_Page_Content">
+
+
+
+
+                                    <div class="row">
+                                        <form class="form-horizontal" role="form" method="POST" action="/proveedores/ver/{{provider.id}}/" enctype="multipart/form-data">
+                                        <!-- left column -->
+                                        {% csrf_token %}
+                                        <div class="col-md-3">
+                                            <div class="text-center">
+                                                <img src="{{provider.logo.url}}" class="avatar img-circle" alt="avatar" id="logo_preview">
+                                                <h6>Cambiar logo</h6>
+
+                                                <div class="input-group">
+                                                    <span class="input-group-btn">
+                                                        <span class="btn btn-primary btn-file">
+                                                            Seleccionar
+                                                            <input type="file" name="logo" id="logo_file">
+                                                        </span>
+                                                    </span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <!-- edit form column -->
+                                        <div class="col-md-9 personal-info">
+                                            {% if error %}
+                                            <div class="alert alert-danger alert-dismissable">
+                                                <a class="panel-close close" data-dismiss="alert">×</a> 
+                                                <i class="fa fa-coffee"></i>
+                                                {{error}}
+                                            </div>
+                                            {% endif %}
+                                            <h3>Info Personal</h3>
+
+                                                <div class="form-group">
+                                                    <label class="col-lg-3 control-label">Nombre:</label>
+                                                    <div class="col-lg-8">
+                                                        <input class="form-control" value="{{provider.name}}" type="text" name="name" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-lg-3 control-label">Apellido:</label>
+                                                    <div class="col-lg-8">
+                                                        <input class="form-control" value="{{provider.lastname}}" type="text" name="lastname" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-lg-3 control-label">Empresa:</label>
+                                                    <div class="col-lg-8">
+                                                        <input class="form-control" value="{{provider.company}}" type="text" name="company" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-lg-3 control-label">Email:</label>
+                                                    <div class="col-lg-8">
+                                                        <input class="form-control" value="{{provider.emails}}" type="text" name="emails" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-lg-3 control-label">Puesto:</label>
+                                                    <div class="col-lg-8">
+                                                        <input class="form-control" value="{{provider.puesto}}" required type="text" name="puesto">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-lg-3 control-label">Teléfono:</label>
+                                                    <div class="col-lg-8">
+                                                        <input class="form-control" value="{{provider.phone}}" required type="text" name="phone">
+                                                    </div>
+                                                </div><!-- nuevos datos -->
+                                                <div class="form-group">
+                                                    <label class="col-lg-3 control-label">RFC:</label>
+                                                    <div class="col-lg-8">
+                                                        <input class="form-control" value="{{provider.rfc}}" required type="text" name="rfc">
+                                                    </div>
+                                                </div>
+                                                 <div class="form-group">
+                                                    <label class="col-lg-3 control-label">Calle:</label>
+                                                    <div class="col-lg-8">
+                                                        <input class="form-control"  value="{{provider.street}}" required type="text" name="street">
+                                                    </div>
+                                                </div>
+                                                 <div class="form-group">
+                                                    <label class="col-lg-3 control-label">No. Exterior:</label>
+                                                    <div class="col-lg-8">
+                                                        <input class="form-control" value="{{provider.exterior}}" required type="text" name="exterior">
+                                                    </div>
+                                                </div>
+                                                 <div class="form-group">
+                                                    <label class="col-lg-3 control-label">No. Interior:</label>
+                                                    <div class="col-lg-8">
+                                                        <input class="form-control" value="{{provider.interior}}" type="text" name="interior">
+                                                    </div>
+                                                </div>
+                                                 <div class="form-group">
+                                                    <label class="col-lg-3 control-label">Colonia:</label>
+                                                    <div class="col-lg-8">
+                                                        <input class="form-control" type="text" value="{{provider.colonia}}" name="colonia" required>
+                                                    </div>
+                                                </div>
+                                                 <div class="form-group">
+                                                    <label class="col-lg-3 control-label">Municipio:</label>
+                                                    <div class="col-lg-8">
+                                                        <input class="form-control" value="{{provider.municipio}}" required type="text" name="municipio">
+                                                    </div>
+                                                </div>
+                                                 <div class="form-group">
+                                                    <label class="col-lg-3 control-label">Estado:</label>
+                                                    <div class="col-lg-8">
+                                                        <input class="form-control" value="{{provider.estado}}" required type="text" name="estado">
+                                                    </div>
+                                                </div>
+                                                 <div class="form-group">
+                                                    <label class="col-lg-3 control-label">Código Postal:</label>
+                                                    <div class="col-lg-8">
+                                                        <input class="form-control" value="{{provider.cp}}" required type="text" name="cp">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">Productos/Servicios (separados con una coma):</label>
+                                                    <div class="col-md-8">
+                                                        <input class="form-control"  type="text" name="servicios_productos" value="{{provider.servicios_productos}}" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">Riesgo:</label>
+                                                    <div class="col-md-8">
+                                                        <select name="riesgo" value="">
+                                                            {% if provider.riesgo == 1%}
+                                                                <option value="1" selected >Bajo</option>
+                                                            {% else %}
+                                                                <option value="1" >Bajo</option>
+                                                            {% endif %}
+                                                            {% if provider.riesgo == 2%}
+                                                                <option value="2" selected >Mediano</option>
+                                                            {% else %}
+                                                                <option value="2" >Mediano</option>
+                                                            {% endif %}
+                                                            {% if provider.riesgo == 3%}
+                                                                <option value="3" selected >Alto</option>
+                                                            {% else %}
+                                                                <option value="3" >Alto</option>
+                                                            {% endif %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">Observaciones:</label>
+                                                    <div class="col-md-8">
+                                                        <input class="form-control"  value="{{provider.observaciones}}" type="text" name="observaciones" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">Contraseña:</label>
+                                                    <div class="col-md-8">
+                                                        <input class="form-control" value="" type="password" name="password">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">Confirmar contraseña:</label>
+                                                    <div class="col-md-8">
+                                                        <input class="form-control" value="" type="password" name="password_confirmation">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label"></label>
+                                                    <div class="col-md-8">
+                                                        <input class="btn btn-primary" value="Guardar" type="submit">
+                                                        <span></span>
+                                                        <input class="btn btn-default" value="Cancelar" type="reset">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END OF BLANK PAGE -->
+
+                    </div>
+                </div>
+                <!-- END OF PROFILE -->
+
+                    <!-- FIN DE PAGINA -->
+
+
+                </div>
+
+
+
+                <!-- /FIN DEL CONTENIDO -->
+
+
+
+                <!-- FOOTER -->
+                <div class="footer-space"></div>
+                <div id="footer">
+                    <div class="devider-footer-left"></div>
+                    <div class="time">
+                        <p id="spanDate"></p>
+                        <p id="clock"></p>
+                    </div>
+                    <div class="copyright">Desarrollado por
+                        <a href="http://itpeopleone.com">SupplyOne</a> Todos los derechos reservados</div>
+                    <div class="devider-footer"></div>
+
+                </div>
+                <!-- / FIN DEL FOOTER -->
+
+
+            </div>
+        </div>
+        <!--  FIN DE PAPER WRAP -->
+
+        <!-- CONTENIDO DEL SLIDER DERECHO -->
+        <div class="sb-slidebar sb-right">
+            <div class="right-wrapper">
+                <div class="row">
+                    <h3>
+                        <span><i class="entypo-gauge"></i>&nbsp;&nbsp;DATOS DUROS</span>
+                    </h3>
+                    <div class="col-sm-12">
+
+                        <div class="widget-knob">
+                            <span class="chart" style="position:relative" data-percent="17">
+                                <span class="percent"></span>
+                            </span>
+                        </div>
+                        <div class="widget-def">
+                            <b>Proveedores rechazados</b>
+                            <br>
+                            <i>17%</i>
+                        </div>
+
+                        <div class="widget-knob">
+                            <span class="chart" style="position:relative" data-percent="75">
+                                <span class="percent"></span>
+                            </span>
+                        </div>
+                        <div class="widget-def">
+                            <b>Proveedores aprobados</b>
+                            <br>
+                            <i>75%</i>
+                        </div>
+
+
+                        <div class="widget-knob">
+                            <span class="overall" style="position:relative" data-percent="62">
+                                <span class="percent3"></span>
+                            </span>
+                        </div>
+                        <div class="widget-def">
+                            <b>Bien calificados</b>
+                            <br>
+                            <i>62% del total</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FIN DEL CONTENIDO DEL SLIDER DERECHO-->
+
+
+        <!-- MAIN EFFECT -->
+        <script type="text/javascript" src="/static/js/preloader.js"></script>
+        <script type="text/javascript" src="/static/js/bootstrap.js"></script>
+        <script type="text/javascript" src="/static/js/app.js"></script>
+        <script type="text/javascript" src="/static/js/load.js"></script>
+        <script type="text/javascript" src="/static/js/main.js"></script>
+        <script type="text/javascript">
+            document.getElementById("logo_file").onchange = function () {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    // get loaded data and render thumbnail.
+                    document.getElementById("logo_preview").src = e.target.result;
+                };
+                // read the image file as a data URL.
+                reader.readAsDataURL(this.files[0]);
+            };
+
+        </script>
+
+
+</body>
+
+</html>
