@@ -15,12 +15,9 @@
     <link rel="stylesheet" href="/static/css/bootstrap.css">
 
     <link rel="stylesheet" href="/static/js/button/ladda/ladda.min.css">
-    
-     <link href="/static/js/footable/css/footable.core.css?v=2-0-1" rel="stylesheet" type="text/css" />
-    <link href="/static/js/footable/css/footable.standalone.css" rel="stylesheet" type="text/css" />
-    <link href="/static/js/footable/css/footable-demos.css" rel="stylesheet" type="text/css" />
-     <link rel="stylesheet" href="/static/js/dataTable/lib/jquery.dataTables/css/DT_bootstrap.css" />
-    <link rel="stylesheet" href="/static/js/dataTable/css/datatables.responsive.css" />
+    <link rel="stylesheet" href="/static/js/wizard/css/jquery.steps.css">
+    <link type="text/css" rel="stylesheet" href="/static/js/wizard/jquery.stepy.css" />
+    <link href="/static/js/tabs/acc-wizard.min.css" rel="stylesheet">
 
 
 
@@ -170,7 +167,7 @@
                     </ul>
                     <ul id="nt-title">
                         <li>&#160;&#160;Bienvenido (a)&#160;
-                            <b>{{user.get_name}}</b>&#160;; 
+                            <b>{{user.get_full_name}}</b>&#160;; 
                         </li>
                         
 
@@ -180,7 +177,7 @@
                 <ul style="margin-right:0;" class="nav navbar-nav navbar-right">
                     <li>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <img alt="" class="admin-pic img-circle" src="/static/avatar/10.jpg">Hola, {{user.get_name}} <b class="caret"></b>
+                            <img alt="" class="admin-pic img-circle" src="/static/avatar/10.jpg">Hola, {{user.get_full_name}} <b class="caret"></b>
                         </a>
                         <ul style="margin-top:14px;" role="menu" class="dropdown-setting dropdown-menu">
                             <li>
@@ -453,7 +450,7 @@
                 </li>
                 <li><i class="fa fa-lg fa-angle-right"></i>
                 </li>
-                <li><a href="/solicitudes/" title="Sample page 1">Solicitudes</a>
+                <li><a href="#" title="Sample page 1">Generar órden de compra</a>
                 </li>
                 <li><i class="fa fa-lg fa-angle-right"></i>
                 
@@ -467,113 +464,175 @@
 
             <!--FIN DEL BREADCRUMB -->
 
-            <!-- CONTENIDO -->
-            <!-- TABLAS DINÁMICAS -->
-           
-
             <div class="content-wrap">
                 <div class="row">
+
+
                     <div class="col-sm-12">
-                        <div class="nest" id="FilteringClose">
+                        <!-- LATA POR PASOS-->
+						<div class="col-sm-12">
+                        <div class="nest" id="basicClose">
                             <div class="title-alt">
                                 <h6>
-                                    Solicitudes</h6>
+                                    Alta de órden compra</h6>
                                 <div class="titleClose">
-                                    <a class="gone" href="#FilteringClose">
+                                    <a class="gone" href="#basicClose">
                                         <span class="entypo-cancel"></span>
                                     </a>
                                 </div>
                                 <div class="titleToggle">
-                                    <a class="nav-toggle-alt" href="#Filtering">
+                                    <a class="nav-toggle-alt" href="#basic">
                                         <span class="entypo-up-open"></span>
                                     </a>
                                 </div>
 
                             </div>
-							<div class="body-nest" id="Footable">
+                            <form class="form-horizontal" role="form" method="POST" action="/orden/crear/" id="formulario_save">
+                                {% csrf_token %}
+                            <div class="body-nest" id="basic">
 
-                                <p class="lead well">Sollicitudes realizadas en el mes de agosto del 2016</p>
-                            <div class="body-nest" id="Filtering"><!-- flitros  -->
+                                <div id="wizard">
+                                    <h2>Datos Proveedor</h2>
+                                    <section>
+                                        
+                                                <div class="form-group">
+                                                    <label class="col-lg-3 control-label">Proveedor:</label>
+                                                    <div class="col-lg-8">
+                                                        <select name="provedor">
+                                                            {% for p in provedores %}
+                                                                <option value="{{p.id}}">
+                                                                    {{p.company}}
+                                                                </option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-lg-3 control-label">Solicitante:</label>
+                                                    <div class="col-lg-8">
+                                                        <input class="form-control" read-only="true" disabled value="{{user.get_full_name}}" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-lg-3 control-label">Área:</label>
+                                                    <div class="col-lg-8">
+                                                        <input class="form-control" required type="text" name="area_solicitante" name="area">
+                                                    </div>
+                                                </div>
+                                    </section>
 
-                                <div class="row" style="margin-bottom:10px;">
-                                    <div class="col-sm-4">
-                                        <input class="form-control" id="filter" placeholder="Buscar..." type="text" />
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <select class="filter-status form-control">
-                                            <option value="active">Activada</option>
-                                            <option value="disabled">Finalizada</option>
-                                            <option value="suspended">Suspendida</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-6">
+                                    <h2>Productos | Servicios</h2>
+                                    <section>
+                                                <div class="form-group">
+                                                    <label class="col-lg-3 control-label" >Producto/Servicio:</label>
+                                                    <div class="col-lg-4">
+                                                        <input class="form-control"  type="text" name="s1">
+                                                    </div>
+                                                    <label class="col-lg-2 control-label" >Cantidad:</label>
+                                                    <div class="col-lg-2">
+                                                        <input class="form-control" " type="text" name="q1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-lg-3 control-label">Producto/Servicio:</label>
+                                                    <div class="col-lg-4">
+                                                        <input class="form-control" type="text" name="s2">
+                                                    </div>
+                                                   <label class="col-lg-2 control-label" >Cantidad:</label>
+                                                    <div class="col-lg-2">
+                                                        <input class="form-control" type="text" name="q2">
+                                                    </div>                                                
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-lg-3 control-label">Producto/Servicio:</label>
+                                                    <div class="col-lg-4">
+                                                        <input class="form-control"  type="text" name="s3">
+                                                    </div>
+                                                    <label class="col-lg-2 control-label" >Cantidad:</label>
+                                                    <div class="col-lg-2">
+                                                        <input class="form-control"  type="text" name="q3">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-lg-3 control-label">Producto/Servicio:</label>
+                                                    <div class="col-lg-4">
+                                                        <input class="form-control" type="text" name="s4">
+                                                    </div>
+                                                    <label class="col-lg-2 control-label" >Cantidad:</label>
+                                                    <div class="col-lg-2">
+                                                        <input class="form-control"  type="text" name="q4">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-lg-3 control-label">Producto/Servicio:</label>
+                                                    <div class="col-lg-4">
+                                                        <input class="form-control"  type="text" name="s5">
+                                                    </div>
+                                                    <label class="col-lg-2 control-label" >Cantidad:</label>
+                                                    <div class="col-lg-2">
+                                                        <input class="form-control"  type="text" name="q5">
+                                                    </div>  
+                                                </div>
+                                    </section>
 
-                                        <a href="#clear" style="margin-left:10px;" class="pull-right btn btn-info clear-filter" title="clear filter">limpiar</a>
-                                        <a href="#api" class="pull-right btn btn-info filter-api" title="Filter using the Filter API">Filtro API</a>
-                                        <a href="/orden/crear/" style="margin-right:10px;" class="pull-right btn btn-info" title="Filter using the Filter API">Crear Orden</a>
+                                    <h2>Observaciones</h2>
+                                    <section>
+                                    
+                                        
+                                        <fieldset title="">
+                                            <legend style="display:none;"></legend>
+                                            
+                                                <div class="form-group">
+                                                    <label class="col-lg-3 control-label" >Urgencia:</label>
+                                                    <div class="col-lg-8">
+                                                    	<select class="form-control" required name="urgencia">
+                                                        	<option value="">Seleccione una opción</option>
+                                                            <option value="Normal">Normal</option>
+                                                            <option value="Media">Media</option>
+                                                            <option value="Alta">Alta</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            
+                                            <div class="form-group">
+                                                    <label class="col-lg-3 control-label" >Observaciones:</label>
+                                                    <div class="col-lg-8">
+                                                    	<textarea class="form-control" name="observaciones" style="height:121px !important;"></textarea>
+                                                     
+                                                    </div>
+                                                </div>
+                                            
+                                            	
 
 
 
 
-                                    </div>
+                                        </fieldset>
 
+                                        
+
+ 
+                                
+
+                                    </section>
+
+                                   
                                 </div>
-								<table id="footable-res2" class="demo" data-filter="#filter" data-filter-text-only="true" class="table-striped footable-res footable metro-blue" data-page-size="6">
-                               <!--<table id="footable-res2" class="demo" data-filter="#filter" data-filter-text-only="true"> -->
-                                    <thead>
-                                        <tr>
-                                            <th data-toggle="true">
-                                                Proveedor
-                                            </th>
-                                            <th>
-                                                Solicitante
-                                            </th>
-                                            <th data-hide="phone ">
-                                                Producto o servicio
-                                            </th>
-                                            <th data-hide="phone">
-                                                Fecha
-                                            </th>
-                                            <th data-hide="phone">
-                                                Estatus
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for o in ordenes%}
-                                            <tr>
-                                                <td><a href="/proveedores/ver/{{o.provider.id}}/">{{o.provider.company}}</a></td>
-                                                <td><a href="#">{{o.to_user.get_full_name}}</a>
-                                                </td>
-                                                <td><a href="/orden/{{o.id}}/">{{o.productos}}</a></td>
-                                                <td>{{o.created_at}}</td>
-                                                <td data-value="{{o.active}}">
-                                                <span class="status-metro status-{{o.active}}" title="{{o.status}}">{{o.status}}</span>
-
-                                                </td>
-                                            </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                     <tfoot>
-                                        <tr>
-                                            <td colspan="5">
-                                                <div class="pagination pagination-centered"></div>
-                                            </td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                                    </form>
 
                             </div>
-
                         </div>
-
-
                     </div>
+                        
+                        
+                    </div>
+                    <!-- FIN DE PAGINA -->
+
 
                 </div>
-            </div>
 
-            <!-- FIN DE TABLAS DINÁMICAS -->
+
+
                 <!-- /FIN DEL CONTENIDO -->
 
 
@@ -661,66 +720,51 @@
         <script type="text/javascript" src="/static/js/app.js"></script>
         <script type="text/javascript" src="/static/js/load.js"></script>
         <script type="text/javascript" src="/static/js/main.js"></script>
+        <script src="/static/js/wizard/lib/jquery.cookie-1.3.1.js"></script>
+    <script src="/static/js/wizard/build/jquery.steps.js"></script>
+    <script type="text/javascript" src="/static/js/wizard/jquery.stepy.js"></script>
         
-		<!-- JS PARA LAS TABLAS DINAMICAS -->
-        <!-- GAGE -->
-    <script type="text/javascript" src="/static/js/toggle_close.js"></script>
-    <script src="/static/js/footable/js/footable.js?v=2-0-1" type="text/javascript"></script>
-    <script src="/static/js/footable/js/footable.sort.js?v=2-0-1" type="text/javascript"></script>
-    <script src="/static/js/footable/js/footable.filter.js?v=2-0-1" type="text/javascript"></script>
-    <script src="/static/js/footable/js/footable.paginate.js?v=2-0-1" type="text/javascript"></script>
-    <script src="/static/js/footable/js/footable.paginate.js?v=2-0-1" type="text/javascript"></script>
-
-
-
-
-
-    <script type="text/javascript">
+         <script>
     $(function() {
-        $('.footable-res').footable();
+        $("#wizard").steps({
+            headerTag: "h2",
+            bodyTag: "section",
+            transitionEffect: "slideLeft",
+            onFinishing: function (event, currentIndex)
+            {
+                var form = $('#formulario_save')
+                //form.validate().settings.ignore = ":disabled";
+                form.submit();
+            },
+        });
+
+        $("#wizard_vertical").steps({
+            headerTag: "h2",
+            bodyTag: "section",
+            transitionEffect: "slideLeft",
+            stepsOrientation: "vertical"
+        });
+
+        $("#wizard-tab").steps({
+            headerTag: "h2",
+            bodyTag: "section",
+            transitionEffect: "none",
+            enableFinishButton: false,
+            enablePagination: false,
+            enableAllSteps: true,
+            titleTemplate: "#title#",
+            cssClass: "tabcontrol"
+        });
+
+        //stepy
+        $('#transition-duration-demo').stepy({
+            duration: 400,
+            transition: 'fade'
+        });
+
     });
     </script>
-    <script type="text/javascript">
-    $(function() {
-        $('#footable-res2').footable().bind('footable_filtering', function(e) {
-            var selected = $('.filter-status').find(':selected').text();
-            if (selected && selected.length > 0) {
-                e.filter += (e.filter && e.filter.length > 0) ? ' ' + selected : selected;
-                e.clear = !e.filter;
-            }
-        });
 
-        $('.clear-filter').click(function(e) {
-            e.preventDefault();
-            $('.filter-status').val('');
-            $('table.demo').trigger('footable_clear_filter');
-        });
-
-        $('.filter-status').change(function(e) {
-            e.preventDefault();
-            $('table.demo').trigger('footable_filter', {
-                filter: $('#filter').val()
-            });
-        });
-
-        $('.filter-api').click(function(e) {
-            e.preventDefault();
-
-            //get the footable filter object
-            var footableFilter = $('table').data('footable-filter');
-
-            alert('about to filter table by "tech"');
-            //filter by 'tech'
-            footableFilter.filter('tech');
-
-            //clear the filter
-            if (confirm('clear filter now?')) {
-                footableFilter.clearFilter();
-            }
-        });
-    });
-    </script>
-        <!-- FIN DE JS PARA LAS TABLAS DINAMICAS -->
 
 </body>
 

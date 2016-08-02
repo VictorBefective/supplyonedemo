@@ -499,7 +499,10 @@
                             </div>
                             <!-- /.col -->
                             <div class="col-sm-4 invoice-col">
-                                <b>Orden #{{orden.id}}</b>
+                                <b>Orden #{{orden.id}}</b><br>
+                                <b>Urgencia: {{orden.urgencia}}</b><br>
+                                <b>Estado: {{orden.status}}</b><br>
+                                <b>Observaciones: {{orden.observaciones}}</b>
                             </div>
                             <!-- /.col -->
                         </div>
@@ -525,10 +528,27 @@
                                             <tr>
                                                 <td>{{p.unidades}}</td>
                                                 <td>{{p.serivicio_producto}}</td>
-                                                <td>{{p.descripcion}}</td>
-                                                <td>${{p.subtotal}}</td>
-                                                <td>${{p.iva}}</td>
-                                                <td>${{p.total}}</td>
+                                                {% if p.descripcion %}
+                                                    <td>{{p.descripcion}}</td>
+                                                {% else %}
+                                                    <td></td>
+                                                {% endif %}
+                                                {% if p.subtotal %}
+                                                    <td>${{p.subtotal}}</td>
+                                                {% else %}
+                                                    <td>$0</td>
+                                                {% endif %}
+
+                                                {% if p.iva %}
+                                                    <td>${{p.iva}}</td>
+                                                {% else %}
+                                                    <td>$0</td>
+                                                {% endif %}
+                                                {% if p.total %}
+                                                    <td>${{p.total}}</td>
+                                                {% else %}
+                                                    <td>$0</td>
+                                                {% endif %}
 
                                             </tr>
                                         {% endfor %}

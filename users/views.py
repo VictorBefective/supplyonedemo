@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
-from users.models import Document, Provider, Orden
+from users.models import Document, Provider, Orden, ServicioOrden
 from django.shortcuts import get_object_or_404
 
 
@@ -105,6 +105,34 @@ def proveedores(request):
 	provedores = Provider.objects.all()
 	return render(request, 'proveedores.html', locals())
 
+@user_passes_test(lambda user: user.is_authenticated())
+def crear_orden(request):
+	provedores = Provider.objects.all()
+	if request.method == "POST":
+		orden = Orden()
+		orden.urgencia = request.POST.get('urgencia')
+		orden.area = request.POST.get('area_solicitante')
+		orden.to_user = request.user
+		orden.provider_id = request.POST.get('provedor')
+		orden.observaciones = request.POST.get('observaciones')
+		orden.save()
+		q1,s1 = request.POST.get('q1'), request.POST.get('s1')
+		q2,s2 = request.POST.get('q2'), request.POST.get('s2')
+		q3,s3 = request.POST.get('q3'), request.POST.get('s3')
+		q4,s4 = request.POST.get('q4'), request.POST.get('s4')
+		q5,s5 = request.POST.get('q5'), request.POST.get('s5')
+		if q1 and s1:
+			ServicioOrden.objects.create(serivicio_producto =s1, unidades=q1, orden=orden)
+		if q2 and s2:
+			ServicioOrden.objects.create(serivicio_producto =s2, unidades=q2, orden=orden)
+		if q3 and s3:
+			ServicioOrden.objects.create(serivicio_producto =s3, unidades=q3, orden=orden)
+		if q4 and s4:
+			ServicioOrden.objects.create(serivicio_producto =s4, unidades=q4, orden=orden)
+		if q5 and s5:
+			ServicioOrden.objects.create(serivicio_producto =s5, unidades=q5, orden=orden)
+		return HttpResponseRedirect('/orden/{0}/'.format(orden.id))
+	return render(request, 'alta_orden.html', locals())
 	
 
 def login_view(request):

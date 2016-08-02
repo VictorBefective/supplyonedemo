@@ -155,20 +155,23 @@ class User(AbstractBaseUser, CommonModel, PermissionsMixin):
 class ServicioOrden(CommonModel):
 	serivicio_producto = models.CharField(max_length=100)
 	unidades = models.IntegerField(default=1)
-	subtotal = models.DecimalField(max_digits=14, decimal_places=2)
-	iva = models.DecimalField(max_digits=14, decimal_places=2)
-	total = models.DecimalField(max_digits=14, decimal_places=2)
-	descripcion = models.CharField(max_length=100)
+	subtotal = models.DecimalField(max_digits=14, decimal_places=2, null=True, default=0)
+	iva = models.DecimalField(max_digits=14, decimal_places=2, null=True, default=0)
+	total = models.DecimalField(max_digits=14, decimal_places=2, null=True, default=0)
+	descripcion = models.CharField(max_length=100, null=True)
 	orden = models.ForeignKey('Orden')
 
-
+	
 class Orden(CommonModel):
 	provider = models.ForeignKey('Provider')
 	to_user = models.ForeignKey('User')
-	fecha_de_pago = models.DateField()
-	status = models.CharField(max_length=20)
-	envio = models.DecimalField(max_digits=14, decimal_places=2)
-
+	fecha_de_pago = models.DateField(null=True)
+	status = models.CharField(max_length=20, default="Activada")
+	envio = models.DecimalField(max_digits=14, decimal_places=2, null=True, default=0)
+	urgencia = models.CharField(max_length=20)
+	observaciones = models.CharField(max_length=100, null=True)
+	area = models.CharField(max_length=100)
+	
 	def active(self):
 		if self.status == "Activada":
 			return "active"
@@ -185,10 +188,14 @@ class Orden(CommonModel):
 		return m
 
 	def subtotal(self):
+		if None in self.servicioorden_set.values_list('subtotal', flat=True):
+			return 0
 		return sum(self.servicioorden_set.values_list('subtotal', flat=True))
 
 	def iva(self):
+		if None in self.servicioorden_set.values_list('iva', flat=True):
+			return 0
 		return sum(self.servicioorden_set.values_list('iva', flat=True))
 
 	def total(self):
-		return self.subtotal() + self.iva() + self.envio
+		return self.subtotal() + self.iva() + (self.envio or 0)
