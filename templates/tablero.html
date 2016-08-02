@@ -1,4 +1,3 @@
-{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="es-MX">
 
@@ -11,11 +10,11 @@
     <!-- Los estilos -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.js"></script>
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/loader-style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/loader-style.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
 
-    <link rel="stylesheet" href="{% static 'js/button/ladda/ladda.min.css' %}">
+    <link rel="stylesheet" href="/static/js/button/ladda/ladda.min.css">
 
 
 
@@ -26,7 +25,7 @@
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
     <!-- Iconos Favicon y touch  -->
-    <link rel="shortcut icon" href="{% static 'ico/favicon.png' %}">
+    <link rel="shortcut icon" href="/static/ico/favicon.png">
 </head>
 
 <body>
@@ -165,7 +164,7 @@
                     </ul>
                     <ul id="nt-title">
                         <li>&#160;&#160;Bienvenido (a)&#160;
-                            <b>{{user.get_name}}</b>&#160;; 
+                            <b>{{user.get_full_name}}</b>&#160;; 
                         </li>
                         
 
@@ -175,7 +174,7 @@
                 <ul style="margin-right:0;" class="nav navbar-nav navbar-right">
                     <li>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <img alt="" class="admin-pic img-circle" src="{% static 'avatar/10.jpg' %}">Hola, {{user.get_name}} <b class="caret"></b>
+                            <img alt="" class="admin-pic img-circle" src="/static/avatar/10.jpg">Hola, {{user.get_full_name}} <b class="caret"></b>
                         </a>
                         <ul style="margin-top:14px;" role="menu" class="dropdown-setting dropdown-menu">
                             <li>
@@ -236,7 +235,7 @@
     <!-- MENU LATERAL -->
     <div id="skin-select">
         <div id="logo">
-            <img src="{% static 'img/SO_logo.png' %}" style="margin: 21px 0px 15px";>
+            <img src="/static/img/SO_logo.png" style="margin: 21px 0px 15px";>
         </div>
 
         <a id="toggle">
@@ -320,7 +319,7 @@
                                     <a class="tooltip-tip2 ajax-load" href="#" title="KPIs Proveedores"><i class="icon-attachment"></i><span>KPIs Proveedores</span></a>
                                 </li>
                                 <li>
-                                	<a class="tooltip-tip2 ajax-load" href="#" title="Riesgo de Proveedores"><i class="icon-view-list-large"></i><span>Riesgo de Proveedores</span></a>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title="Riesgo de Proveedores"><i class="icon-view-list-large"></i><span>Riesgo de Proveedores</span></a>
                                 </li>
                                 
                             </ul>
@@ -343,7 +342,7 @@
                                 <li>
                                     <a class="tooltip-tip2 ajax-load" href="#" title=“Contables”><i class="icon-upload"></i><span>Docs. Contables</span></a>
                                 </li>
-			       <li>
+                   <li>
                                     <a class="tooltip-tip2 ajax-load" href="#" title=“Comerciales”><i class="icon-upload"></i><span>Ref. Comerciales</span></a>
                                 </li>
                                 <li>
@@ -398,6 +397,7 @@
             <div class="row">
                 <div id="paper-top">
                     <div class="col-sm-3">
+                      <h2 class="tittle-content-header"> <em class="icon-media-record"></em> <span>Título</span></h2>
                     </div>
 
                     <div class="col-sm-7">
@@ -405,6 +405,8 @@
                         <div class="tittle-middle-header">
 
                           <div class="alert">
+                            <button type="button" class="close" data-dismiss="alert"></button>
+                                <span class="tittle-alert entypo-info-circled"></span> Alguna introducción </div>
 
 
                         </div>
@@ -790,7 +792,7 @@
             <!-- Fin de las 2 columnas -->
           
             
-            <!-- GRAFICA 
+            <!-- GRAFICA -->
             <div class="content-wrap">
                 <div class="row">
 
@@ -918,31 +920,31 @@
 
 
         <!-- MAIN EFFECT -->
-        <script type="text/javascript" src="{% static 'js/preloader.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/load.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+        <script type="text/javascript" src="/static/js/preloader.js"></script>
+        <script type="text/javascript" src="/static/js/bootstrap.js"></script>
+        <script type="text/javascript" src="/static/js/app.js"></script>
+        <script type="text/javascript" src="/static/js/load.js"></script>
+        <script type="text/javascript" src="/static/js/main.js"></script>
         
          <!--  PLUGIN -->
-    <script type="text/javascript" src="{% static 'js/chart/chart.js' %}"></script>
-    <!--<script type="text/javascript" src="{% static 'js/chart/barChart.js' %}"></script>-->
-    <script type="text/javascript" src="{% static 'js/chart/radarChart.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/chart/polarChart.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/chart/lineChart.js' %}"></script>
+    <script type="text/javascript" src="/static/js/chart/chart.js"></script>
+    <!--<script type="text/javascript" src="/static/js/chart/barChart.js"></script>-->
+    <script type="text/javascript" src="/static/js/chart/radarChart.js"></script>
+    <script type="text/javascript" src="/static/js/chart/polarChart.js"></script>
+    <script type="text/javascript" src="/static/js/chart/lineChart.js"></script>
 
 <!--
-    <script type="text/javascript" src="{% static 'js/chart/jquery.flot2.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/chart/jquery.flot.resize.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/chart/realTime.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/chart/chart-float-stacking.js' %}"></script>
+    <script type="text/javascript" src="/static/js/chart/jquery.flot2.js"></script>
+    <script type="text/javascript" src="/static/js/chart/jquery.flot.resize.js"></script>
+    <script type="text/javascript" src="/static/js/chart/realTime.js"></script>
+    <script type="text/javascript" src="/static/js/chart/chart-float-stacking.js"></script>
 -->
 
 <!-- medidor de barras en top 3 porveedores -->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.js"></script>
-    <script src="{% static 'js/progress-bar/src/jquery.velocity.min.js' %}"></script>
-    <script src="{% static 'js/progress-bar/number-pb.js' %}"></script>
-    <script src="{% static 'js/progress-bar/progress-app.js' %}"></script>
+    <script src="/static/js/progress-bar/src/jquery.velocity.min.js"></script>
+    <script src="/static/js/progress-bar/number-pb.js"></script>
+    <script src="/static/js/progress-bar/progress-app.js"></script>
 
 
 <!-- fin de medidor de barras en top 3 proveedores -->
