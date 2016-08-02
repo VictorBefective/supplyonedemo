@@ -84,7 +84,7 @@ def alta_proveedor(request):
 				doc.document = document
 				doc.provider = provider
 				doc.save()
-			return HttpResponseRedirect('/proveedor/ver/{0}/'.format(provider.id))
+			return HttpResponseRedirect('/proveedores/ver/{0}/'.format(provider.id))
 		else:
 			error = "Las contraseñas no coinciden"
 	return render(request, 'alta.html', locals())
