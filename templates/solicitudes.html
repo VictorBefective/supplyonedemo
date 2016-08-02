@@ -542,10 +542,27 @@
                                     <tbody>
                                         {% for o in ordenes%}
                                             <tr>
-                                                <td><a href="/proveedores/ver/{{o.provider.id}}/">{{o.provider.company}}</a></td>
-                                                <td><a href="#">{{o.to_user.get_full_name}}</a>
+                                                <td>
+                                                {% if o.status == "Suspendida" %}
+                                                    <a href="/proveedores/ver/{{o.provider.id}}/">{{o.provider.company}}</a>
+                                                {% else %}
+                                                    <p>{{o.provider.company}}</p>
+                                                {% endif %}
                                                 </td>
-                                                <td><a href="/orden/{{o.id}}/">{{o.productos}}</a></td>
+                                                <td>
+                                                {% if o.status == "Suspendida" %}
+                                                    <a href="#">{{o.to_user.get_full_name}}</a>
+                                                {% else %}
+                                                    <p>{{o.to_user.get_full_name}}</p>   
+                                                {% endif %}
+                                                </td>
+                                                <td>
+                                                {% if o.status == "Suspendida" %}
+                                                    <a href="/orden/{{o.id}}/">{{o.productos}}</a>
+                                                {% else %}
+                                                    <p>{{o.productos}}</p>   
+                                                {% endif %}
+                                                </td>
                                                 <td>{{o.created_at}}</td>
                                                 <td data-value="{{o.active}}">
                                                 <span class="status-metro status-{{o.active}}" title="{{o.status}}">{{o.status}}</span>
