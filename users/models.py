@@ -53,6 +53,23 @@ class Document(CommonModel):
 def upload_logo_provider(instance, filename):
 	return 'provider_{0}/{1}'.format(instance.id, filename)
 
+def upload_product(instance, filename):
+	return 'provider_{0}/{1}'.format(instance.provider.id, filename)
+
+class NondeletedManager(models.Manager):
+    """Returns only objects which haven't been deleted"""
+    use_for_related_fields = True
+
+    def get_queryset(self):
+        return super(NondeletedManager, self).get_queryset().exclude(deleted=True)
+
+class Producto(models.Model):
+	deleted = models.BooleanField(default=False)
+	provider = models.ForeignKey('Provider')
+	nombre = models.CharField(max_length=150)
+	descripcion = models.TextField()
+	logo = models.ImageField(upload_to=upload_product)
+	objects = NondeletedManager()
 
 class Provider(CommonModel):
 	name = models.CharField(max_length=100)
@@ -71,25 +88,35 @@ class Provider(CommonModel):
 	password = models.CharField(max_length=256)
 	phone = models.CharField(max_length=100)
 	observaciones = models.TextField(null=True)
-	servicios_productos = models.TextField()
+	servicios_productos = models.TextField(null=True)
 	riesgo = models.IntegerField()
-	calificacion = models.IntegerField()
+	status = models.CharField(max_length=20, default="Pendiente")
+	calificacion = models.IntegerField(null=True)
 	logo = models.ImageField(upload_to=upload_logo_provider, null=True)
 
-	def save(self, *args, **kwargs):
-		self.calificacion = random.randint(1,5)
-		super(Provider, self).save(*args, **kwargs)
+	def active(self):
+		if self.status == "Aprobado":
+			return "active"
+		if self.status == "Pendiente":
+			return "suspended"
+		if self.status == "Rechazado":
+			return "disabled"
+
+	# def save(self, *args, **kwargs):
+	# 	self.calificacion = random.randint(1,5)
+	# 	super(Provider, self).save(*args, **kwargs)
 
 
 	def get_name(self):
 		return '{0} {1}'.format(self.name, self.lastname)
 
 	def get_servicios(self):
-		return self.servicios_productos.split(',')
+		return self.producto_set.values_list('nombre', flat=True)
+		#return []#self.servicios_productos.split(',')
 
 
 	def get_calificacion(self):
-		return range(0, self.calificacion)
+		return range(0, self.calificacion or 0)
 
 	def get_riesgo(self):
 		return range(0, int(self.riesgo))
@@ -161,7 +188,21 @@ class ServicioOrden(CommonModel):
 	descripcion = models.CharField(max_length=100, null=True)
 	orden = models.ForeignKey('Orden')
 
-	
+
+class CalificacionOrden(CommonModel):
+	cp1 = models.BooleanField()
+	cp2 = models.BooleanField()
+	cc1 = models.BooleanField()
+	sp1 = models.BooleanField()
+	sp2 = models.BooleanField()
+	sp3 = models.BooleanField()
+	c1 = models.IntegerField()	
+	c2 = models.IntegerField()
+	c3 = models.IntegerField()
+	orden = models.OneToOneField('Orden')
+	fecha_evaluacion = models.DateField()
+	recibio = models.CharField(max_length=125)
+
 class Orden(CommonModel):
 	provider = models.ForeignKey('Provider')
 	to_user = models.ForeignKey('User')
@@ -199,3 +240,50 @@ class Orden(CommonModel):
 
 	def total(self):
 		return self.subtotal() + self.iva() + (self.envio or 0)
+
+	def calificado(self):
+		if self.status == "Finalizada":
+			return hasattr(self, 'calificacionorden')
+		return True
+
+	def calificacion_gral(self):
+		if hasattr(self, 'calificacionorden'):
+			print self.calificacionorden.c1, self.calificacionorden.c2, self.calificacionorden.c3, "PUTAMADRE"
+			return (self.calificacionorden.c1+self.calificacionorden.c2+self.calificacionorden.c3)/3.0
+
+
+
+class PreCalificacionCuestionario(models.Model):
+	proveedor = models.ForeignKey('Provider', unique=True)
+	fecha_evaluacion = models.DateField()
+	auditor = models.CharField(max_length=100)
+	telefono = models.CharField(max_length=25)
+	email = models.EmailField(max_length=100)
+	ins1 = models.TextField(null=True)
+	ins2 = models.TextField(null=True)
+	ins3 = models.TextField(null=True)
+	ins4 = models.TextField(null=True)
+	ins5 = models.TextField(null=True)
+	ins6 = models.TextField(null=True)
+	ins7 = models.TextField(null=True)
+	ins8 = models.TextField(null=True)
+	inp1 = models.TextField(null=True)
+	inp2 = models.TextField(null=True)
+	inp3 = models.TextField(null=True)
+	inp4 = models.TextField(null=True)
+	inp5 = models.TextField(null=True)
+	inp6 = models.TextField(null=True)
+	inp7 = models.TextField(null=True)
+	inp8 = models.TextField(null=True)
+	dpp1 = models.TextField(null=True)
+	dpp2 = models.TextField(null=True)
+	sg1 = models.TextField(null=True)
+	sg2 = models.TextField(null=True)
+	sg3 = models.TextField(null=True)
+	sg4 = models.TextField(null=True)
+	sg5 = models.TextField(null=True)
+	tec1 = models.TextField(null=True)
+	tec2 = models.TextField(null=True)
+	tec3 = models.TextField(null=True)
+	tec4 = models.TextField(null=True)
+	tec5 = models.TextField(null=True)

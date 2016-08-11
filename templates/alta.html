@@ -346,7 +346,7 @@
                         </li>
 
                         <li>
-                            <a class="tooltip-tip ajax-load" href="#" title="Reportes">
+                            <a class="tooltip-tip ajax-load" href="/reportes/" title="Reportes">
                                 <i class="fontawesome-tasks"></i>
                                 <span>Reportes</span>
 
@@ -484,7 +484,7 @@
 
 
                                         <!-- COLUMNA IZQUIERDA -->
-                                        <form class="form-horizontal" role="form" method="POST" action="/proveedores/alta/" enctype="multipart/form-data">
+                                        <form class="form-horizontal" role="form" method="POST" action="/proveedores/alta/" enctype="multipart/form-data" id="formulario_bueno">
                                         {% csrf_token %}
                                         <div class="col-md-3">
                                             <div class="text-center">
@@ -593,12 +593,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-md-3 control-label">Productos/Servicios (separados con una coma):</label>
-                                                    <div class="col-md-8">
-                                                        <input class="form-control"  type="text" name="servicios_productos">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
                                                     <label class="col-md-3 control-label">Riesgo:</label>
                                                     <div class="col-md-8">
                                                         <select name="riesgo">
@@ -627,6 +621,43 @@
                                                         <input class="form-control"  type="password" name="password_confirmation">
                                                     </div>
                                                 </div>
+                                                <!-- Inicia parte de agregar imagen al producto-->   
+                                                <div class="form-group" id="productos_list">
+                                                    <div class="col-md-8" style="border: 1px solid #ccc; border-radius:6px">
+                                                        <div class="col-md-4">
+                                                            <img src="http://placehold.it/150" height="75" width="75" class="avatar img-circle" style="margin:20px auto; display:block;" alt="avatar
+                                                            " data-logo-producto="true">
+                                                            <div class="input-group">
+                                                                <span class="input-group-btn">
+                                                                    <span class="btn btn-primary btn-file">
+                                                                        Seleccionar
+                                                                        <input type="file" onchange="change_picture_product(this)" name="productos[]" required>
+                                                                    </span>
+                                                                </span>
+                                                            </div>                              
+                                                         </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-2 control-label">Producto:</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control" value="" type="text" name="producto[]">
+                                                            </div>                                                                                           
+                                                            <label class="col-md-2 control-label">Descripcion:</label>
+                                                            <div class="col-md-7">
+                                                                <textarea name="descripcion[]" required class="form-control" style="height:65px !important;"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    <input class="btn btn-primary" value="Borrar" type="button" style="float:right; margin-top:20px; margin-bottom:40px;" onclick="borrar(this);">
+
+                                                    </div>
+                                                 </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label"></label>
+                                                    <div class="col-md-8">
+                                                        <input class="btn btn-primary" value="Agregar otro" type="button" style="float:right; margin-top:20px; margin-bottom:40px;" onclick="agregar_producto()">
+                                                    </div>
+                                                </div>
+                                               <!-- Termina seccion de agregar imagen--> 
+
                                                 <div class="form-group">
                                                     <label class="col-md-3 control-label"></label>
                                                     <div class="col-md-8">
@@ -820,6 +851,30 @@
         <script type="text/javascript" src="/static/js/load.js"></script>
         <script type="text/javascript" src="/static/js/main.js"></script>
         <script type="text/javascript">
+
+            function change_picture_product(context){
+                var job = $(context);
+                var img = job.parent().parent().parent().parent().find('[data-logo-producto="true"]');
+                console.log(img);
+                var reader = new FileReader();
+                reader.onload = function(e){
+                    img.attr('src', e.target.result);
+                }
+                reader.readAsDataURL(context.files[0])
+            }
+
+            function borrar(context){
+                var parent = $(context).parent()
+                parent.remove()
+            }
+
+            function agregar_producto(){
+                var template = '<div class="col-md-8" style="border: 1px solid #ccc; border-radius:6px"><div class="col-md-4"><img src="http://placehold.it/150" height="75" width="75" class="avatar img-circle" style="margin:20px auto; display:block;" alt="avatar" data-logo-producto="true"><div class="input-group"><span class="input-group-btn"><span class="btn btn-primary btn-file">Seleccionar<input required type="file" onchange="change_picture_product(this)" name="productos[]"></span></span></div></div><div class="form-group"><label class="col-md-2 control-label">Producto:</label><div class="col-md-7"><input class="form-control" value=""  name="producto[]" required type="text"></div><label class="col-md-2 control-label">Descripcion:</label><div class="col-md-7"><textarea required  name="descripcion[]" class="form-control" style="height:65px !important;"></textarea></div></div><input class="btn btn-primary" value="Borrar" type="button" style="float:right; margin-top:20px; margin-bottom:40px;" onclick="borrar(this);"></div> '
+                $('#productos_list').append(template);
+
+
+            }
+            
             document.getElementById("logo_file").onchange = function () {
                 var reader = new FileReader();
 
@@ -830,6 +885,11 @@
                 // read the image file as a data URL.
                 reader.readAsDataURL(this.files[0]);
             };
+
+            // $('#formulario_bueno').on('submit', function(e){
+            //     e.preventDefault();
+            //     var form_data = new FormData()
+            // })
             $("input[name='attachment[]']").on("change", function(e) {
                 $('#demo-files').empty();
                 var f = e.target.files;

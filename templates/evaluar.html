@@ -15,13 +15,30 @@
     <link rel="stylesheet" href="/static/css/bootstrap.css">
 
     <link rel="stylesheet" href="/static/js/button/ladda/ladda.min.css">
-    
-     <link href="/static/js/footable/css/footable.core.css?v=2-0-1" rel="stylesheet" type="text/css" />
-    <link href="/static/js/footable/css/footable.standalone.css" rel="stylesheet" type="text/css" />
-    <link href="/static/js/footable/css/footable-demos.css" rel="stylesheet" type="text/css" />
-     <link rel="stylesheet" href="/static/js/dataTable/lib/jquery.dataTables/css/DT_bootstrap.css" />
-    <link rel="stylesheet" href="/static/js/dataTable/css/datatables.responsive.css" />
+    <style>
+		.precalificacion label
+		{
+			display:block;
+		}
+		.precalificacion textarea
+		{
+			width: 100%;
+			height: 60px !important;
+		}
+		.precalificacion input[type="checkbox"]
+		{
+			display: inline-block;
+			vertical-align: top;
+		}
+		.precalificacion p
+		{
+			margin-left: 20px;
+			display: inline-block;
+			vertical-align: top;
+			width: 90%;
+		}
 
+	</style>
 
 
 
@@ -170,7 +187,7 @@
                     </ul>
                     <ul id="nt-title">
                         <li>&#160;&#160;Bienvenido (a)&#160;
-                            <b>{{user.get_name}}</b>&#160;; 
+                            <b>Hugo</b>&#160;; 
                         </li>
                         
 
@@ -180,7 +197,7 @@
                 <ul style="margin-right:0;" class="nav navbar-nav navbar-right">
                     <li>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <img alt="" class="admin-pic img-circle" src="/static/avatar/10.jpg">Hola, {{user.get_name}} <b class="caret"></b>
+                            <img alt="" class="admin-pic img-circle" src="/static/avatar/10.jpg">Hola, Hugo <b class="caret"></b>
                         </a>
                         <ul style="margin-top:14px;" role="menu" class="dropdown-setting dropdown-menu">
                             <li>
@@ -294,7 +311,7 @@
                     </ul>
 
                     <ul class="topnav menu-left-nest"> <li> <a href="#" style="border-left:0px solid!important;" class="title-menu-left"> <span class="design-kit">Pre-Calificación </span> <em data-toggle="tooltip" class="entypo-cog pull-right config-wrap"></em> </a> </li>
-                      <li> <a class="tooltip-tip ajax-load" href="/proveedores/alta/" title="Alta proveedores"> <em class="entypo-user-add"></em> <span>Alta proveedores</span></a> </li>
+                      <li> <a class="tooltip-tip ajax-load" href="/proveedores/alta/"" title="Alta proveedores"> <em class="entypo-user-add"></em> <span>Alta proveedores</span></a> </li>
                       <li>
                             <a class="tooltip-tip ajax-load" href="#" title="Aprobadas"><em class="icon-thumbs-up"></em> <span>Aprobadas</span>
                             <div class="noft-blue">289</div>
@@ -409,6 +426,8 @@
                         <div class="devider-vertical visible-lg"></div>
                         <div class="tittle-middle-header">
 
+                          <div class="alert">
+                            <button type="button" class="close" data-dismiss="alert"></button>
 
 
                         </div>
@@ -448,118 +467,301 @@
 
             <!-- BREADCRUMB -->
             <ul id="breadcrumb">
-                <li>
-                    <span class="entypo-home"></span>
-                </li>
-                <li><i class="fa fa-lg fa-angle-right"></i>
-                </li>
-                <li><a href="/solicitudes/" title="Sample page 1">Solicitudes</a>
-                </li>
-                <li><i class="fa fa-lg fa-angle-right"></i>
-                
-                <li class="pull-right">
-                    <div class="input-group input-widget">
-
-                        <input style="border-radius:15px" type="text" placeholder="Buscar..." class="form-control">
-                    </div>
-                </li>
             </ul>
 
             <!--FIN DEL BREADCRUMB -->
 
-            <!-- CONTENIDO -->
-            <!-- TABLAS DINÁMICAS -->
-           
-
             <div class="content-wrap">
                 <div class="row">
+
+
                     <div class="col-sm-12">
-                        <div class="nest" id="FilteringClose">
+                        <!-- BLANK PAGE-->
+
+                        <div class="nest" id="Blank_PageClose">
                             <div class="title-alt">
-                                <h6>
-                                    Solicitudes</h6>
+                                <h6>Pre calificación de Proveedores</h6>
                                 <div class="titleClose">
-                                    <a class="gone" href="#FilteringClose">
+                                    <a class="gone" href="#Blank_PageClose">
                                         <span class="entypo-cancel"></span>
                                     </a>
                                 </div>
                                 <div class="titleToggle">
-                                    <a class="nav-toggle-alt" href="#Filtering">
+                                    <a class="nav-toggle-alt" href="#Blank_Page_Content">
                                         <span class="entypo-up-open"></span>
                                     </a>
                                 </div>
 
                             </div>
-							<div class="body-nest" id="Footable">
 
-                                <p class="lead well">Sollicitudes realizadas en el mes de agosto del 2016</p>
-                            <div class="body-nest" id="Filtering"><!-- flitros  -->
+                            <div class="body-nest" id="Blank_Page_Content">
 
-								<table id="footable-res2" class="demo" data-filter="#filter" data-filter-text-only="true" class="table-striped footable-res footable metro-blue" data-page-size="6">
-                               <!--<table id="footable-res2" class="demo" data-filter="#filter" data-filter-text-only="true"> -->
-                                    <thead>
-                                        <tr>
-                                            <th data-toggle="true">
-                                                Nombre
-                                            </th>
-                                            <th>
-                                                Empresa
-                                            </th>
+                                <h3>Datos para del precalificado</h3>
 
-                                            <th>
-                                                Estatus
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for o in provedores%}
-                                            <tr>
-                                                <td><a href="/proveedores/ver/{{o.id}}/">{{o.get_name}}</a></td>
-                                                <td><a href="/proveedores/ver/{{o.id}}/">{{o.company}}</a></td>
-                                                </td>
-                                                <td data-value="{{o.active}}">
-                                                <span class="status-metro status-{{o.active}}" title="{{o.status}}">{{o.status}}</span>
-                                                </td>
-                                            </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                     <tfoot>
-                                        <tr>
-                                            <td colspan="5">
-                                                <div class="pagination pagination-centered"></div>
-                                            </td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                                            <form class="form-horizontal" role="form" method="POST" action="/proveedores/{{provider.id}}/evaluar/">
+                                                {% if id_cuestionario %}
+                                                    <input type="hidden" name="id_cuestionario" value="{{id_cuestionario.id}}">
+                                                {% endif %}
+                                                {%  csrf_token %}
+                                                <div class="form-group precalificacion">
+                                                	<div class="col-lg-4">
+                                                    	<label>Proveedor:</label>
+                                                        <input disabled class="form-control" value="{{provider.get_name}}"></input>
+                                                    </div>
+                                                	<div class="col-lg-4">
+                                                    	<label>Fecha de la evaluación:</label>
+                                                        <input class="form-control"  type="date" value='{{  id_cuestionario.fecha_evaluacion|date:"Y-m-d"}}' required name="fecha_evaluacion"></input>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                    	<label>Auditor:</label>
+                                                        <input class="form-control" type="text" value="{{id_cuestionario.auditor}}" name="auditor"></input>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                    	<label>Teléfono:</label>
+                                                        <input class="form-control" type="text" value="{{id_cuestionario.telefono}}" name="telefono"></input>
+                                                    </div>
+                                                     <div class="col-lg-4">
+                                                    	<label>E-mail:</label>
+                                                        <input class="form-control" type="email" value="{{id_cuestionario.email}}" name="email"></input>
+                                                    </div>
+                                                   </div>
+                                                   <h3>Instalaciones</h3>
+                                                   <div class="form-group precalificacion">
+                                                  
+													<div class="col-lg-4">
+                                                    	<label>¿Cuál es el área total construida (m²).</label>
+                                                        <textarea class="form-control" name="ins1">
+{{id_cuestionario.ins1}}
+                                                        </textarea>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                    	<label>Capacidad de producción de este producto o servicio </label>
+                                                        <textarea class="form-control" name="ins2">
+{{id_cuestionario.ins2}}
+                                                        </textarea>
+                                                    </div>
+                                                     <div class="col-lg-4">
+                                                    	<label>Disponibilidad para nuevos desarrollos</label>
+                                                        <textarea class="form-control" name="ins3">
+{{id_cuestionario.ins3}}
+                                                        </textarea>
+                                                    </div>
+                                                     <div class="col-lg-4">
+                                                    	<label>Impacto en la disponibilidad de Recursos</label>
+                                                        <textarea class="form-control" name="ins4">
+{{id_cuestionario.ins4}}
+                                                        </textarea>
+                                                    </div>
+                                                     <div class="col-lg-4">
+                                                    	<label>Inversiones recientes</label>
+                                                        <textarea class="form-control" name="ins5">
+{{id_cuestionario.ins5}}
+                                                        </textarea>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                    	<label>Ubicación de la empresa</label>
+                                                        <textarea class="form-control" name="ins6">
+{{id_cuestionario.ins6}}
+                                                        </textarea>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                    	<label>Equipos utilizados en la fabricación</label>
+                                                        <textarea class="form-control" name="ins7">
+{{id_cuestionario.ins7}}
+                                                        </textarea>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                    	<label>Equipos de inspección y análisis de laboratorio</label>
+                                                        <textarea class="form-control" name="ins8">
+{{id_cuestionario.ins8}}
+                                                        </textarea>
+                                                    </div>
+                                                </div>
+                                                <h3>Informaciones de perfil</h3>
+                                                 <div class="form-group precalificacion">
+                                                  
+                                                    <div class="col-lg-4">
+                                                        <label>Tiempo de estar constituida la empresa?</label>
+                                                        <textarea class="form-control"  name="inp1">
+{{id_cuestionario.inp1}}
+                                                        </textarea>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <label>¿Cuáles son los principales clientes?</label>
+                                                        <textarea class="form-control"  name="inp2">
+{{id_cuestionario.inp2}}
+                                                        </textarea>
+                                                    </div>
+                                                     <div class="col-lg-4">
+                                                        <label>¿Que tipos de producto/servicio puede producir/proveer?</label>
+                                                        <textarea class="form-control"  name="inp3">
+{{id_cuestionario.inp3}}
+                                                        </textarea>
+                                                    </div>
+                                                     <div class="col-lg-4">
+                                                        <label>¿La empresa exporta productos? (liste los países)</label>
+                                                        <textarea class="form-control" name="inp4">
+{{id_cuestionario.inp4}}
+                                                        </textarea>
+                                                    </div>
+                                                     <div class="col-lg-4">
+                                                        <label>Informar la facturación Anual. ($)</label>
+                                                        <textarea class="form-control" name="inp5">
+{{id_cuestionario.inp5}}
+                                                        </textarea>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <label>Número de Empleados (directos e indirectos).</label>
+                                                        <textarea class="form-control" name="inp6">
+{{id_cuestionario.inp6}}
+                                                        </textarea>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <label>¿Existe la capacidad interna de desarrollo de embalajes?</label>
+                                                        <textarea class="form-control"  name="inp7">
+{{id_cuestionario.inp7}}
+                                                        </textarea>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <label>Porcentaje de rotación en los ultimos 12 meses. (%)</label>
+                                                        <textarea class="form-control" name="inp8">
+{{id_cuestionario.inp8}}
+                                                        </textarea>
+                                                    </div>
+                                                </div>
+                                                <h3>Desarrollo del Producto/Proceso</h3>
+                                                 <div class="form-group precalificacion">
+                                                  
+                                                    <div class="col-lg-4">
+                                                        <label>¿Se ajusta a nuestros requisitos/manual de procesos?</label>
+                                                        <textarea class="form-control"  name="dpp1">
+{{id_cuestionario.ddp1}}
+                                                        </textarea>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <label>¿El proveedor posee un cronograma para los nuevos desarrollos o servicios?</label>
+                                                        <textarea class="form-control"  name="dpp2">
+{{id_cuestionario.ddp2}}
+                                                        </textarea>
+                                                    </div>
+                                                     
+                                                </div>
+                                                <h3>Sistema de Gestión</h3>
+                                                 <div class="form-group precalificacion">
+                                                  
+                                                    <div class="col-lg-4">
+                                                        <label>¿Maneja algún sistema de gestión?</label>
+                                                        <textarea class="form-control"  name="sg1">
+{{id_cuestionario.sg1}}
+                                                        </textarea>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <label>¿Tiene experiencia en métodos de análisis de solución de problemas?</label>
+                                                        <textarea class="form-control"  name="sg2">
+{{id_cuestionario.sg2}}
+                                                        </textarea>
+                                                    </div>
+                                                     <div class="col-lg-4">
+                                                        <label>¿Posee alguna Norma de Certificación?</label>
+                                                        <textarea class="form-control"  name="sg3">
+{{id_cuestionario.sg3}}
+                                                        </textarea>
+                                                    </div>
+                                                     <div class="col-lg-4">
+                                                        <label>¿Posee algún sistema de gestión ambiental? </label>
+                                                        <textarea class="form-control" name="sg4">
+{{id_cuestionario.sg4}}
+                                                        </textarea>
+                                                    </div>
+                                                     <div class="col-lg-4">
+                                                        <label>¿Posee algún sistema de gestión de salud y seguridad?</label>
+                                                        <textarea class="form-control" name="sg5">
+{{id_cuestionario.sg5}}
+                                                        </textarea>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <h3>Tecnología</h3>
+                                                 <div class="form-group precalificacion">
+                                                  
+                                                    <div class="col-lg-4">
+                                                        <label>¿Posee la capacidad de transferencia de datos vía electrónica?</label>
+                                                        <textarea class="form-control"  value="Mencione cuales" name="tec1">
+{{id_cuestionario.tec1}}
+                                                        </textarea>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <label>¿Las herramientas utilizadas en la fabricación de los productos pueden ser reparadas?</label>
+                                                        <textarea class="form-control" name="tec2">
+{{id_cuestionario.tec2}}
+                                                        </textarea>
+                                                    </div>
+                                                     <div class="col-lg-4">
+                                                        <label>¿Los equipos para inspecciones y análisis de laboratorio utilizados por la empresa son adecuados al ítem en desarrollo?</label>
+                                                        <textarea class="form-control" name="tec3">
+{{id_cuestionario.tec3}}
+                                                        </textarea>
+                                                    </div>
+                                                     <div class="col-lg-4">
+                                                        <label>¿Los equipos de fabricación son adecuadas al tipo de producto a ser producido?  </label>
+                                                        <textarea class="form-control"  name="tec4">
+{{id_cuestionario.tec4}}
+                                                        </textarea>
+                                                    </div>
+                                                     <div class="col-lg-4">
+                                                        <label>¿Tiene el equipo capacitado para dar asistencia técnica de forma inmediata?</label>
+                                                        <textarea class="form-control"  name="tec5">
+{{id_cuestionario.tec5}}
+                                                        </textarea>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <h3>Basada en los datos del proveedor y el cuestionario previamente llenado por el auditor, seleccione la calificación correspondiente al proveedor y su estatus</h3>
+                                                <div class="form-group precalificacion">
 
+                                                    <div class="col-lg-4">
+                                                        <label>Estatus: </label>
+                                                        <select name="estatus" required value="{{provider.status}}">
+                                                            <option value=""> ---- </option>
+                                                            <option value="Aprobado" {%ifequal provider.status 'Aprobado'%}selected{% endifequal %} >Aprobado</option>
+                                                            <option value="Pendiente" {%ifequal provider.status 'Pendiente'%}selected{% endifequal %} >Pendiente</option>
+                                                            <option value="Rechazado" {%ifequal provider.status 'Rechazado'%}selected{% endifequal %} >Rechazado</option>
+                                                        </select>                                                  
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <label>Califiación: </label>
+                                                        <select name="calificacion" required value="{{provider.calificacion}}">
+                                                            <option value="0" {%ifequal provider.calificacion 0%}selected{% endifequal %} >0</option>
+                                                            <option value="1" {%ifequal provider.calificacion 1%}selected{% endifequal %} >1</option>
+                                                            <option value="2" {%ifequal provider.calificacion 2%}selected{% endifequal %} >2</option>
+                                                            <option value="3" {%ifequal provider.calificacion 3%}selected{% endifequal %} >3</option>
+                                                            <option value="4" {%ifequal provider.calificacion 4%}selected{% endifequal %} >4</option>
+                                                            <option value="5" {%ifequal provider.calificacion 5%}selected{% endifequal %} >5</option>
+                                                        </select>                                                  
+                                                    </div>
+
+
+                                                </div>
+
+                                                {% if provider.status == "Pendiente" %}
+                                                    <button class="btn btn-info" type="submit">Guardar</button>
+                                                {% endif %}
+                                            </form>
                             </div>
-
                         </div>
-
-
                     </div>
+                    <!-- FIN DE PAGINA -->
+
 
                 </div>
-            </div>
 
-            <!-- FIN DE TABLAS DINÁMICAS -->
+
+
                 <!-- /FIN DEL CONTENIDO -->
 
 
 
                 <!-- FOOTER -->
-                <div class="footer-space"></div>
-                <div id="footer">
-                    <div class="devider-footer-left"></div>
-                    <div class="time">
-                        <p id="spanDate"></p>
-                        <p id="clock"></p>
-                    </div>
-                    <div class="copyright">Desarrollado por
-                        <a href="http://itpeopleone.com">SupplyOne</a> Todos los derechos reservados</div>
-                    <div class="devider-footer"></div>
-
-                </div>
                 <!-- / FIN DEL FOOTER -->
 
 
@@ -630,66 +832,7 @@
         <script type="text/javascript" src="/static/js/app.js"></script>
         <script type="text/javascript" src="/static/js/load.js"></script>
         <script type="text/javascript" src="/static/js/main.js"></script>
-        
-		<!-- JS PARA LAS TABLAS DINAMICAS -->
-        <!-- GAGE -->
-    <script type="text/javascript" src="/static/js/toggle_close.js"></script>
-    <script src="/static/js/footable/js/footable.js?v=2-0-1" type="text/javascript"></script>
-    <script src="/static/js/footable/js/footable.sort.js?v=2-0-1" type="text/javascript"></script>
-    <script src="/static/js/footable/js/footable.filter.js?v=2-0-1" type="text/javascript"></script>
-    <script src="/static/js/footable/js/footable.paginate.js?v=2-0-1" type="text/javascript"></script>
-    <script src="/static/js/footable/js/footable.paginate.js?v=2-0-1" type="text/javascript"></script>
 
-
-
-
-
-    <script type="text/javascript">
-    $(function() {
-        $('.footable-res').footable();
-    });
-    </script>
-    <script type="text/javascript">
-    $(function() {
-        $('#footable-res2').footable().bind('footable_filtering', function(e) {
-            var selected = $('.filter-status').find(':selected').text();
-            if (selected && selected.length > 0) {
-                e.filter += (e.filter && e.filter.length > 0) ? ' ' + selected : selected;
-                e.clear = !e.filter;
-            }
-        });
-
-        $('.clear-filter').click(function(e) {
-            e.preventDefault();
-            $('.filter-status').val('');
-            $('table.demo').trigger('footable_clear_filter');
-        });
-
-        $('.filter-status').change(function(e) {
-            e.preventDefault();
-            $('table.demo').trigger('footable_filter', {
-                filter: $('#filter').val()
-            });
-        });
-
-        $('.filter-api').click(function(e) {
-            e.preventDefault();
-
-            //get the footable filter object
-            var footableFilter = $('table').data('footable-filter');
-
-            alert('about to filter table by "tech"');
-            //filter by 'tech'
-            footableFilter.filter('tech');
-
-            //clear the filter
-            if (confirm('clear filter now?')) {
-                footableFilter.clearFilter();
-            }
-        });
-    });
-    </script>
-        <!-- FIN DE JS PARA LAS TABLAS DINAMICAS -->
 
 </body>
 

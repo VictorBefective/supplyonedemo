@@ -366,7 +366,7 @@
                         </li>
 
                         <li>
-                            <a class="tooltip-tip ajax-load" href="#" title="Reportes">
+                            <a class="tooltip-tip ajax-load" href="/reportes/" title="Reportes">
                                 <i class="fontawesome-tasks"></i>
                                 <span>Reportes</span>
 
@@ -502,6 +502,21 @@
                                 <b>Orden #{{orden.id}}</b><br>
                                 <b>Urgencia: {{orden.urgencia}}</b><br>
                                 <b>Estado: {{orden.status}}</b><br>
+                                {% if not orden.calificado %}
+                                    <b><a href="/orden/{{orden.id}}/evaluar/">Evaluar</a></b><br>
+                                {% else %}
+                                    <b><a href="/orden/{{orden.id}}/evaluar/">Ver Evaluación</a></b><br>
+                                {% endif %}
+                                {% if orden.status != "Finalizada" %}
+                                    <form method="POST" action="/orden/{{orden.id}}/">
+                                        {% csrf_token %}
+                                        <select name="status" onchange="this.form.submit();">
+                                            <option value="Activada" {% ifequal orden.status 'Activada'%}selected{% endifequal %}>Activada</option>
+                                            <option value="Suspendida" {% ifequal orden.status 'Suspendida'%}selected{% endifequal %}>Suspendida</option>
+                                            <option value="Finalizada" {% ifequal orden.status 'Finalizada'%}selected{% endifequal %}>Finalizada</option>
+                                        </select>
+                                    </form>
+                                {% endif %}
                                 <b>Observaciones: {{orden.observaciones}}</b>
                             </div>
                             <!-- /.col -->

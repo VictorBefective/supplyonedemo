@@ -14,9 +14,79 @@
     <link rel="stylesheet" href="/static/css/loader-style.css">
     <link rel="stylesheet" href="/static/css/bootstrap.css">
     <link rel="stylesheet" href="/static/css/profile.css">
-
+    <link href="/static/js/footable/css/footable.core.css?v=2-0-1" rel="stylesheet" type="text/css" />
+    <link href="/static/js/footable/css/footable.standalone.css" rel="stylesheet" type="text/css" />
+    <link href="/static/js/footable/css/footable-demos.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="/static/js/button/ladda/ladda.min.css">
 
+<style>
+/**
+ * Tooltip Styles
+ */
+
+/* Add this attribute to the element that needs a tooltip */
+[data-tooltip] {
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+
+/* Hide the tooltip content by default */
+[data-tooltip]:before,
+[data-tooltip]:after {
+  visibility: hidden;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Position tooltip above the element */
+[data-tooltip]:before {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-bottom: -15px;
+  margin-left: -35px;
+  padding: 7px;
+  /*width: 80px;*/
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #000;
+  background-color: rgba(10, 74, 61, 1);
+  color: #fff;
+  content: attr(data-tooltip);
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+/* Triangle hack to make tooltip look like a speech bubble 
+[data-tooltip]:after {
+  position: absolute;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -5px;
+  width: 0;
+  border-top: 5px solid #000;
+  border-top: 5px solid hsla(0, 0%, 20%, 0.9);
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  content: " ";
+  font-size: 0;
+  line-height: 0;
+}
+*/
+/* Show tooltip content on hover */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+  visibility: visible;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+</style>
 
 
 
@@ -367,7 +437,7 @@
                         </li>
 
                         <li>
-                            <a class="tooltip-tip ajax-load" href="#" title="Reportes">
+                            <a class="tooltip-tip ajax-load" href="/reportes/" title="Reportes">
                                 <i class="fontawesome-tasks"></i>
                                 <span>Reportes</span>
 
@@ -492,6 +562,23 @@
                                             <img src="{{provider.logo.url}}" alt="" class="img-circle img-responsive img-profile">
 
                                         </li>
+                                         <li class="list-group-item text-center">
+                                            <span class="pull-left">
+                                                <strong>Estatus:</strong>
+                                            </span>
+
+
+                                            <div class="ratings">
+                                                {% if provider.status == "Pendiente"%}
+                                                    <a href="/proveedores/{{provider.id}}/evaluar/">{{provider.status}}, evaluar</a>
+                                                {% else %}
+                                                    <span class="status-metro status-{{provider.active}}">{{provider.status}}</span>
+                                                {% endif %}
+                                            </div>
+
+
+                                        </li>
+
                                         <li class="list-group-item text-center">
                                             <span class="pull-left">
                                                 <strong>Calificación</strong>
@@ -536,9 +623,32 @@
                                             </span>{{provider.updated_at}}</li>
                                         <li class="list-group-item text-right">
                                             <span class="pull-left">
-                                                <strong>Activado</strong>
-                                            </span>{{provider.get_activado}}</li>
+                                                <strong>Pre-Calificación</strong>
+                                            </span>                                                    <a href="/proveedores/{{provider.id}}/evaluar/">Evaluación</a>
 
+                                        </li>
+                                        <li class="list-group-item text-right">
+                                            <span class="pull-left">
+                                                <strong>Activado</strong>
+                                            </span>{{provider.get_activado}}
+                                        </li>
+
+
+                                    </ul>
+                                    <ul class="list-group"> 
+                                        <span class="entypo-user"></span>&nbsp;&nbsp;Productos
+                                        {% for p  in provider.producto_set.all %}
+                                                <a href="#" data-tooltip="{{p.descripcion}}">        
+                                                <img src="{{p.logo.url}}" height="75" width="75" class="avatar img-circle" style="margin:20px auto; display:block;" alt="avatar"> </a>
+                                        {% endfor %}
+
+                                    </ul>
+                                    <ul class="list-group">
+                                        <li class="list-group-item text-left">
+                                            <span class="entypo-user"></span>&nbsp;&nbsp;Documentos</li>
+                                        {% for doc in provider.document_set.all %}
+                                            <a download="{{doc.document.name}}" href="{{doc.document.url}}">{{doc.document.name}}</a>
+                                        {% endfor %}
                                     </ul>
 
                                 </div>
@@ -785,12 +895,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-md-3 control-label">Productos/Servicios (separados con una coma):</label>
-                                                    <div class="col-md-8">
-                                                        <input class="form-control"  type="text" name="servicios_productos" value="{{provider.servicios_productos}}" required>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
                                                     <label class="col-md-3 control-label">Riesgo:</label>
                                                     <div class="col-md-8">
                                                         <select name="riesgo" value="">
@@ -830,14 +934,58 @@
                                                         <input class="form-control" value="" type="password" name="password_confirmation">
                                                     </div>
                                                 </div>
+                                                <div class="form-group" id="productos_list">
+
+
+                                                {% for p in provider.producto_set.all %}
+
+
+
+                                                    <div class="col-md-8" style="border: 1px solid #ccc; border-radius:6px">
+                                                        <div class="col-md-4">
+                                                            <img src="{{p.logo.url}}" height="75" width="75" class="avatar img-circle" style="margin:20px auto; display:block;" alt="avatar
+                                                            " data-logo-producto="true">
+
+                                                            <input type="hidden" name="original_images_names[]" data-logo-name="true" value="{{p.logo.name}}">
+                                                            <div class="input-group">
+                                                                <span class="input-group-btn">
+                                                                    Seleccionar
+                                                                    <input type="file" onchange="change_picture_product_2(this)" 
+                                                                    name="productos_original[]">
+                                                                </span>
+                                                            </div>                              
+                                                         </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-2 control-label">Producto:</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control" value="{{p.nombre}}" name="producto_nombres[]" readonly="readonly">
+                                                            </div>                                                                                           
+                                                            <label class="col-md-2 control-label">Descripcion:</label>
+                                                            <div class="col-md-7">
+<textarea name="descripcion_original[]" required class="form-control" style="height:65px !important;">{{p.descripcion}}</textarea>
+                                                            </div>
+                                                        </div>
+                                                    <input class="btn btn-primary" value="Borrar" type="button" style="float:right; margin-top:20px; margin-bottom:40px;" onclick="borrar(this);">
+
+                                                    </div>
+
+                                                {% endfor %}
+                                                </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3 control-label"></label>
                                                     <div class="col-md-8">
-                                                        <input class="btn btn-primary" value="Guardar" type="submit">
-                                                        <span></span>
-                                                        <input class="btn btn-default" value="Cancelar" type="reset">
+                                                        <input class="btn btn-primary" value="Agregar otro" type="button" style="float:right; margin-top:20px; margin-bottom:40px;" onclick="agregar_producto()">
                                                     </div>
                                                 </div>
+                                                                                                    <label class="col-md-3 control-label"></label>
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-8">
+                                                        <input class="btn btn-primary" value="Guardar" type="submit">
+                                                        <span></span>
+                                                        <input class="btn btn-default" value="Cancelar" type="button" onclick="location.reload();"> 
+                                                    </div>
                                             </form>
                                         </div>
                                     </div>
@@ -845,7 +993,6 @@
                             </div>
                         </div>
                         <!-- END OF BLANK PAGE -->
-
                     </div>
                 </div>
                 <!-- END OF PROFILE -->
@@ -955,6 +1102,42 @@
                 // read the image file as a data URL.
                 reader.readAsDataURL(this.files[0]);
             };
+            function borrar(context){
+                var parent = $(context).parent()
+                parent.remove()
+            }
+            function change_picture_product_2(context){
+                var job = $(context);
+                var img = job.parent().parent().parent().parent().find('[data-logo-producto="true"]');
+                var name = job.parent().parent().parent().parent().find('[data-logo-name="true"]');
+                var value = context.value.split(/(\\|\/)/g).pop()
+                name.val(value);
+                var reader = new FileReader();
+                reader.onload = function(e){
+                    img.attr('src', e.target.result);
+                }
+                reader.readAsDataURL(context.files[0])
+            }
+            function change_picture_product(context){
+                var job = $(context);
+                var img = job.parent().parent().parent().parent().find('[data-logo-producto="true"]');
+                console.log(img);
+                var reader = new FileReader();
+                reader.onload = function(e){
+                    img.attr('src', e.target.result);
+                }
+                reader.readAsDataURL(context.files[0])
+            }
+
+
+
+            function agregar_producto(){
+                var template = '<div class="col-md-8" style="border: 1px solid #ccc; border-radius:6px"><div class="col-md-4"><img src="http://placehold.it/150" height="75" width="75" class="avatar img-circle" style="margin:20px auto; display:block;" alt="avatar" data-logo-producto="true"><div class="input-group"><span class="input-group-btn"><span class="btn btn-primary btn-file">Seleccionar<input required type="file" onchange="change_picture_product(this)" name="productos_nuevos[]"></span></span></div></div><div class="form-group"><label class="col-md-2 control-label">Producto:</label><div class="col-md-7"><input class="form-control" value=""  name="producto_nuevo[]" required type="text"></div><label class="col-md-2 control-label">Descripcion:</label><div class="col-md-7"><textarea required  name="descripcion_nuevo[]" class="form-control" style="height:65px !important;"></textarea></div></div><input class="btn btn-primary" value="Borrar" type="button" style="float:right; margin-top:20px; margin-bottom:40px;" onclick="borrar(this);"></div> '
+                $('#productos_list').append(template);
+
+
+            }
+            
 
         </script>
 

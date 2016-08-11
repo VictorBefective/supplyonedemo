@@ -17,19 +17,22 @@ from django.conf.urls import url
 from django.conf import settings
 from django.contrib import admin
 from users.views import (login_view, tablero, alta_proveedor,
-	ver_proveedor, ordenes, proveedores, orden, logout_view, crear_orden)
+	ver_proveedor, ordenes, proveedores, orden, logout_view, crear_orden, evaluar_proveedor,orden_evaluacion,
+    graficas )
 from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^login/', login_view),
     url(r'^logout/', logout_view),
+    url(r'^reportes/', graficas),
     url(r'^proveedores/ver/(?P<id_proveedor>[0-9]+)/$', ver_proveedor),
+    url(r'^proveedores/(?P<id_proveedor>[0-9]+)/evaluar/$', evaluar_proveedor),
     url(r'^orden/(?P<id_orden>[0-9]+)/$', orden),
+    url(r'^orden/(?P<id_orden>[0-9]+)/evaluar/$', orden_evaluacion),
     url(r'^orden/crear/$', crear_orden),
     url(r'^proveedores/alta/$', alta_proveedor),
     url(r'^proveedores/', proveedores),
     url(r'^solicitudes/', ordenes),
     url(r'^$',tablero),
-
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
