@@ -104,7 +104,6 @@ def ver_proveedor(request, id_proveedor):
 	provider = get_object_or_404(Provider, id=id_proveedor)
 	success = False
 	if request.method == "POST":
-		print request.POST, request.FILES
 		if request.POST['password'] == request.POST['password_confirmation']:
 			if request.POST['password'] != '' and request.POST['password_confirmation']:
 				provider.password = request.POST['password']
@@ -164,12 +163,25 @@ def ver_proveedor(request, id_proveedor):
 # u'original_images_names[]': [u'provider_8/kkkkkk.jpg', u'provider_8/zelonka.jpg']
 # u'producto_nombres[]': [u'Producto 1', u'2']
 
+@user_passes_test(lambda user: user.is_authenticated())
+def desempeno(request):
+	provedores = Provider.objects.all()
+	return render(request, 'desempeno.html', locals())
+
+@user_passes_test(lambda user: user.is_authenticated())
+def desempeno_ver(request, id_proveedor):
+	provedor = get_object_or_404(Provider, id=id_proveedor)
+	ordenes = Orden.objects.filter(provider=provedor)
+	id_ordenes = map( lambda x: int(x), ordenes.values_list('id', flat=True))
+	data_1 = map(lambda x: int(x), CalificacionOrden.objects.filter(orden__in=id_ordenes).values_list('c1', flat=True))
+	data_2 = map(lambda x: int(x), CalificacionOrden.objects.filter(orden__in=id_ordenes).values_list('c2', flat=True))
+	data_3 = map(lambda x: int(x), CalificacionOrden.objects.filter(orden__in=id_ordenes).values_list('c3', flat=True))
+	return render(request, 'grafica2.html', locals())
 
 @user_passes_test(lambda user: user.is_authenticated())
 def alta_proveedor(request):
 	error = ""
 	if request.method == "POST":
-		print request.POST, request.FILES
 		if request.POST.get('password') == request.POST.get('password_confirmation'):
 			provider = Provider()
 			provider.name = request.POST.get('name')

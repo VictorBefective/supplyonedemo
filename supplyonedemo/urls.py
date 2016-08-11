@@ -18,7 +18,7 @@ from django.conf import settings
 from django.contrib import admin
 from users.views import (login_view, tablero, alta_proveedor,
 	ver_proveedor, ordenes, proveedores, orden, logout_view, crear_orden, evaluar_proveedor,orden_evaluacion,
-    graficas )
+    graficas, desempeno, desempeno_ver )
 from django.conf.urls.static import static
 
 urlpatterns = [
@@ -26,6 +26,8 @@ urlpatterns = [
     url(r'^login/', login_view),
     url(r'^logout/', logout_view),
     url(r'^reportes/', graficas),
+    url(r'^desempeno/$', desempeno),
+    url(r'^desempeno/(?P<id_proveedor>[0-9]+)/$', desempeno_ver),
     url(r'^proveedores/ver/(?P<id_proveedor>[0-9]+)/$', ver_proveedor),
     url(r'^proveedores/(?P<id_proveedor>[0-9]+)/evaluar/$', evaluar_proveedor),
     url(r'^orden/(?P<id_orden>[0-9]+)/$', orden),
