@@ -171,7 +171,7 @@ def desempeno(request):
 @user_passes_test(lambda user: user.is_authenticated())
 def desempeno_ver(request, id_proveedor):
 	provedor = get_object_or_404(Provider, id=id_proveedor)
-	ordenes = Orden.objects.filter(provider=provedor)
+	ordenes = Orden.objects.filter(provider=provedor, status="Finalizada")
 	id_ordenes = map( lambda x: int(x), ordenes.values_list('id', flat=True))
 	data_1 = map(lambda x: int(x), CalificacionOrden.objects.filter(orden__in=id_ordenes).values_list('c1', flat=True))
 	data_2 = map(lambda x: int(x), CalificacionOrden.objects.filter(orden__in=id_ordenes).values_list('c2', flat=True))
