@@ -744,8 +744,9 @@
     <!--<script type="text/javascript" src="/static/js/chart/realTime.js"></script>-->
     <script type="text/javascript" src="/static/js/chart/chart-float-stacking.js"></script>
     <script type="text/javascript">
-        var barChartData = {
-          
+    {% autoescape off %}
+
+        var barChartData = {          
             labels : {{id_ordenes}},
             datasets : [
                 {
@@ -769,9 +770,15 @@
 
             
         }
+    {% endautoescape %}
+
 
     var myLine = new Chart(document.getElementById("canvas1").getContext("2d")).Bar(barChartData,{
-        pointLabelFontSize : 24
+        scaleOverride : true,
+        scaleSteps : 1,
+        scaleStepWidth : 5,
+        scaleStartValue : 0,
+
     });
 
     </script>
